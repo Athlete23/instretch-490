@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InStretch — V1 Универсальный лендинг</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f0f0f0;
+    padding: 40px 0 60px;
+  }
+  h1 {
+    text-align: center; font-size: 22px; color: #333;
+    margin-bottom: 8px; padding-top: 20px;
+  }
+  .subtitle {
+    text-align: center; font-size: 13px; color: #999;
+    margin-bottom: 40px;
+  }
+
+  .phone {
+    width: 375px; margin: 0 auto 32px;
+    background: #000; border-radius: 40px;
+    padding: 14px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.15);
+  }
+  .phone-inner { border-radius: 28px; overflow: hidden; background: #fff; }
+  .notch {
+    height: 30px; background: #000; border-radius: 28px 28px 0 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .notch::after { content:''; width: 70px; height: 5px; background: #333; border-radius: 3px; }
+
+  .screen {
+    width: 100%; min-height: 540px;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 36px 26px; position: relative;
+  }
+  .lbl {
+    position: absolute; top: 10px; left: 10px;
+    background: rgba(0,0,0,.65); color: #5cccb0;
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 4px; letter-spacing: .3px; z-index: 2;
+  }
+  .lbl-r {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(92,204,176,.15); color: #3ba88a;
+    font-size: 10px; font-weight: 700;
+    padding: 3px 8px; border-radius: 4px; z-index: 2;
+  }
+
+  .cta {
+    width: 100%; padding: 14px 26px 26px; background: #fff;
+    border-top: 1px solid #eee;
+  }
+  .cta-btn {
+    width: 100%; padding: 15px; background: #5cccb0; color: #fff;
+    border: none; border-radius: 12px; font-size: 15px; font-weight: 700;
+    font-family: inherit; cursor: pointer;
+  }
+
+  .placeholder {
+    width: 100%; min-height: 220px;
+    background: linear-gradient(135deg,#c4c4c4,#a0a0a0);
+    border-radius: 12px; display: flex; align-items: center;
+    justify-content: center; color: #fff; font-size: 12px;
+    text-align: center; padding: 16px; line-height: 1.5;
+  }
+  .placeholder--dark { background: linear-gradient(135deg,#444,#222); }
+  .placeholder--mint { background: linear-gradient(135deg,#8ecfb9,#5cccb0); }
+
+  .video-box {
+    width: 100%; aspect-ratio: 16/9; background: #181818;
+    border-radius: 12px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; color: #fff; gap: 8px;
+  }
+  .play { width: 50px; height: 50px; border: 2px solid rgba(255,255,255,.4);
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 20px; }
+
+  .dots { display: flex; gap: 5px; justify-content: center; margin-top: 14px; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; background: #ddd; }
+  .dot.on { background: #5cccb0; width: 18px; border-radius: 4px; }
+
+  .review {
+    background: #fff; border: 1px solid #eee; border-radius: 12px;
+    padding: 16px; text-align: left; width: 100%;
+  }
+  .review + .review { margin-top: 10px; }
+  .review-name { font-size: 13px; font-weight: 700; }
+  .review-date { font-size: 11px; color: #aaa; }
+  .review-stars { color: #fbbf24; font-size: 13px; margin: 6px 0; }
+  .review-text { font-size: 13px; line-height: 1.55; color: #444; }
+  .review-text mark { background: #fef08a; padding: 0 2px; border-radius: 2px; }
+
+  .note {
+    max-width: 375px; margin: -16px auto 32px;
+    background: #fff8e1; border-left: 3px solid #fbbf24;
+    padding: 10px 14px; border-radius: 0 6px 6px 0;
+    font-size: 11px; color: #888; line-height: 1.5;
+  }
+  .note b { color: #555; }
+</style>
+</head>
+<body>
+
+<h1>V1 — Универсальный лендинг</h1>
+<div class="subtitle">Как это выглядит на экране телефона в ВК лид-форме</div>
+
+<!-- === 1. HERO === -->
+<div class="phone"><div class="phone-inner"><div class="notch"></div>
+  <div class="screen" style="background: #111; color: #fff; min-height: 560px;">
+    <div class="lbl" style="background:rgba(255,255,255,.15);">1 — Hero</div>
+    <div class="lbl-r">IMG</div>
+    <div class="placeholder--dark placeholder" style="min-height: 260px; margin-bottom: 24px;">
+      Фото с тренировки<br>(энергия, движение, реальные девушки)<br>+ логотип InStretch
+    </div>
+    <div style="font-size: 24px; font-weight: 800; text-align: center; line-height: 1.3;">
+      Попробуй 2 тренировки<br>за 490&nbsp;&#8381;
+    </div>
+    <div style="font-size: 14px; opacity: .55; margin-top: 14px; text-align: center; line-height: 1.5;">
+      Женская студия фитнеса и растяжки в&nbsp;Брянске.<br>
+      12 направлений. Группы до 8 человек.
+    </div>
+    <div style="font-size: 13px; opacity: .3; margin-top: 24px;">↓ Листай</div>
+  </div>
+  <div class="cta"><button class="cta-btn">Записаться на пробную</button></div>
+</div></div>
+
+<!-- === 2. ОФФЕР === -->
+<div class="phone"><div class="phone-inner"><div class="notch"></div>
+  <div class="screen" style="background: #fff; min-height: 400px;">
+    <div class="lbl">2 — Оффер</div>
+    <div class="lbl-r">IMG</div>
+    <div style="width:100%; background: #111; border-radius: 16px; padding: 28px 22px; color: #fff;">
+      <div style="font-size: 14px; text-transform: uppercase; letter-spacing: 1px; opacity: .5; margin-bottom: 12px;">Специальное предложение</div>
+      <div style="font-size: 32px; font-weight: 900; line-height: 1.2;">
+        2 тренировки<br>490&nbsp;&#8381;
+      </div>
+      <div style="font-size: 15px; text-decoration: line-through; opacity: .4; margin-top: 6px;">~1 100 &#8381;</div>
+      <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.15); font-size: 14px; opacity: .7; line-height: 1.5;">
+        Без абонемента. Без обязательств.<br>Просто приходи и попробуй.
+      </div>
+    </div>
+  </div>
+  <div class="cta"><button class="cta-btn">Записаться на пробную</button></div>
+</div></div>
+
+<!-- === 3. БОЛИ === -->
+<div class="phone"><div class="phone-inner"><div class="notch"></div>
+  <div class="screen" style="background: #faf6f2; min-height: 520px; justify-content: flex-start; padding-top: 54px;">
+    <div class="lbl">3 — Боли</div>
+    <div class="lbl-r">IMG</div>
+    <div style="text-align: left; width: 100%;">
+      <div style="font-size: 22px; font-weight: 800; margin-bottom: 24px;">Знакомо?</div>
+      <div style="font-size: 15px; line-height: 2.3; font-weight: 500;">
+        <span style="color:#5cccb0; font-weight:700;">✓</span> Сидишь целый день — спина ноет<br>
+        <span style="color:#5cccb0; font-weight:700;">✓</span> Хочешь быть гибкой, но «я деревянная»<br>
+        <span style="color:#5cccb0; font-weight:700;">✓</span> Начинаешь и бросаешь — нет мотивации<br>
+        <span style="color:#5cccb0; font-weight:700;">✓</span> В общем зале некомфортно<br>
+        <span style="color:#5cccb0; font-weight:700;">✓</span> Хочешь подтянуть тело, но тренажёрка — не&nbsp;твоё
+      </div>
+      <div style="margin-top: 28px; font-size: 17px; font-weight: 700;">Всё это решается.</div>
+    </div>
+  </div>
+  <div class="cta"><button class="cta-btn">Записаться на пробную</button></div>
+</div></div>
+
+<!-- === 4. РЕШЕНИЕ === -->
+<div class="phone"><div class="phone-inner"><div class="notch"></div>
+  <div class="screen" style="background: #fff; min-height: 580px; justify-content: flex-start; padding-top: 50px;">
+    <div class="lbl">4 — Решение</div>
+    <div class="lbl-r">IMG</div>
+    <div class="placeholder--mint placeholder" style="min-height: 180px; margin-bottom: 20px;">
+      Фото интерьера<br>(бирюзовые гамаки, чистый зал)
+    </div>
+    <div style="text-align: left; width: 100%;">
+      <div style="font-size: 20px; font-weight: 800; margin-bottom: 4px;">InStretch — студия только для девушек</div>
+      <div style="font-size: 14px; color: #888; margin-bottom: 20px;">Ни одного мужика. Расслабься.</div>
+      <div style="font-size: 14px; line-height: 2.0; color: #444;">
+        <strong>◆</strong> Мини-группы до 8 человек —<br>
+        <span style="padding-left:18px;">тренер видит тебя, а не спину 30-го в зале</span><br>
+        <strong>◆</strong> 12 направлений в одном абонементе —<br>
+        <span style="padding-left:18px;">выбирай тренировку по настроению</span><br>
+        <strong>◆</strong> 2 студии — Бежица и Советский район<br>
+        <strong>◆</strong> 5.0 на Яндекс Картах — 216 отзывов
+      </div>
+    </div>
+  </div>
+  <div class="cta"><button class="cta-btn">Записаться на пробную</button></div>
+</div></div>
+
+<!-- === 5. НАПРАВЛЕНИЯ (карусель) === -->
+<div class="phone"><div class="phone-inner"><div class="notch"></div>
+  <div class="screen" style="background: #fff; min-height: auto; padding: 50px 20px 20px;">
+    <div class="lbl">5 — Направления</div>
+    <div class="lbl-r">КАРУСЕЛЬ</div>
+
+    <div class="placeholder" style="min-height: 200px; margin-bottom: 14px;">Фото Bungee фитнес</div>
+    <div style="text-align: left; width: 100%; padding: 0 6px;">
+      <div style="font-size: 18px; font-weight: 800;">Bungee фитнес</div>
+      <div style="font-size: 14px; color: #555; margin-top: 6px; line-height: 1.5;">
+        Кардио на тросах — сжигаешь калории и даже не замечаешь. Выносливость, сила, кайф.
+      </div>
+    </div>
+    <div class="dots" style="margin-top: 18px;">
+      <div class="dot on"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+  </div>
+  <div class="cta"><button class="cta-btn">Записаться на пробную</button></div>
+</div></div>
+
+<div class="note">
+  <b>Карусель:</b> 6 слайдов — Bungee, Стретчинг, Lady Dance, TRX, Здоровая спина, Аэростретчинг. На каждом фото + название + 1 строка пользы. Тексты — в .md файле.
+</div>
+
+<!-- === 6. ВИДЕО === -->
+<div class="phone"><div class="phone-inner"><div class="notch"></div>
+  <div class="screen" style="background: #111; min-height: 400px; padding: 50px 20px 20px;">
+    <div class="lbl" style="background:rgba(255,255,255,.15);">6 — Видео</div>
+    <div class="lbl-r">VIDEO 15–30s</div>
+    <div class="video-box">
+      <div class="play">&#9654;</div>
+      <div style="font-size: 11px; opacity: .5; padding: 0 20px; text-align: center; line-height: 1.5;">
+        Нарезка с тренировок: эмоции, улыбки,<br>обычные девушки. Финал — логотип +<br>«Приходи попробовать»
+      </div>
+    </div>
+  </div>
+  <div class="cta"><button class="cta-btn">Записаться на пробную</button></div>
+</div></div>
+
+<!-- === 7. ОТЗЫВЫ === -->
+<div class="phone"><div class="phone-inner"><div class="notch"></div>
+  <div class="screen" style="background: #f8f8f8; min-height: auto; padding: 50px 16px 20px;">
+    <div class="lbl">7 — Отзывы</div>
+    <div class="lbl-r">КАРУСЕЛЬ</div>
+
+    <div class="review">
+      <div class="review-name">Татьяна Рославцева</div>
+      <div class="review-date">10 октября 2025</div>
+      <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="review-text">
+        <mark>Будто пришла не в студию, а в гости к близким подругам.</mark> Была всего на двух тренировках — уже чувствую себя обновлённой и полной сил.
+      </div>
+    </div>
+
+    <div class="review">
+      <div class="review-name">Nazhna</div>
+      <div class="review-date">27 февраля</div>
+      <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="review-text">
+        <mark>Ходила в разные фитнесы, но только это место сохранило желание приходить снова и снова.</mark> Маленькие группы и нет толп народа.
+      </div>
+    </div>
+
+    <div class="review">
+      <div class="review-name">Ирина Кира</div>
+      <div class="review-date">2 октября 2025</div>
+      <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <div class="review-text">
+        <mark>Пришла на пару пробных — потом купила абонемент на 24 занятия.</mark> Светлое помещение, уютно, приятные администраторы.
+      </div>
+    </div>
+
+    <div class="dots" style="margin-top: 14px; margin-bottom: 6px;">
+      <div class="dot on"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+  </div>
+  <div class="cta"><button class="cta-btn">Записаться на пробную</button></div>
+</div></div>
+
+<div class="note">
+  <b>Карусель:</b> каждый отзыв = слайд. Скриншоты с Яндекс Карт, ключевая фраза подчёркнута маркером.
+</div>
+
+<!-- === 8. ВОЗРАЖЕНИЯ === -->
+<div class="phone"><div class="phone-inner"><div class="notch"></div>
+  <div class="screen" style="background: #fff; min-height: 600px; justify-content: flex-start; padding-top: 50px;">
+    <div class="lbl">8 — Возражения</div>
+    <div class="lbl-r">IMG</div>
+    <div style="text-align: left; width: 100%; font-size: 14px; line-height: 1.5;">
+
+      <div style="margin-bottom: 20px;">
+        <div style="font-weight: 700; font-size: 15px; margin-bottom: 4px;">— Я совсем не гибкая</div>
+        <div style="color: #666;">Большинство начинали с нуля. Тренер подберёт нагрузку под тебя.</div>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <div style="font-weight: 700; font-size: 15px; margin-bottom: 4px;">— Боюсь не справиться</div>
+        <div style="color: #666;">Группы до 8 человек — тренер видит каждую.</div>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <div style="font-weight: 700; font-size: 15px; margin-bottom: 4px;">— Нет времени</div>
+        <div style="color: #666;">55 минут, гибкое расписание, запись в 2 тапа через приложение.</div>
+      </div>
+
+      <div style="margin-bottom: 20px;">
+        <div style="font-weight: 700; font-size: 15px; margin-bottom: 4px;">— Это дорого</div>
+        <div style="color: #666;">Пробные 2 тренировки — 490 ₽. Дешевле кофе за занятие.</div>
+      </div>
+
+      <div>
+        <div style="font-weight: 700; font-size: 15px; margin-bottom: 4px;">— Стесняюсь</div>
+        <div style="color: #666;">Только девушки. Тёплая атмосфера. Без оценок.</div>
+      </div>
+
+    </div>
+  </div>
+  <div class="cta"><button class="cta-btn">Записаться на пробную</button></div>
+</div></div>
+
+<!-- === 9. ПОВТОР ОФФЕРА === -->
+<div class="phone"><div class="phone-inner"><div class="notch"></div>
+  <div class="screen" style="background: #111; color: #fff; min-height: 400px;">
+    <div class="lbl" style="background:rgba(255,255,255,.15);">9 — Повтор оффера</div>
+    <div class="lbl-r">IMG</div>
+    <div style="font-size: 28px; font-weight: 900; text-align: center; line-height: 1.3;">
+      2 тренировки за 490&nbsp;&#8381;
+    </div>
+    <div style="width: 40px; height: 2px; background: rgba(255,255,255,.2); margin: 24px auto;"></div>
+    <div style="font-size: 15px; opacity: .6; text-align: center; line-height: 1.5;">
+      Нажми кнопку — запишись за 30 секунд.<br>
+      Мы напишем, поможем выбрать<br>направление и время.
+    </div>
+  </div>
+  <div class="cta"><button class="cta-btn">Записаться на пробную</button></div>
+</div></div>
+
+<!-- === 10. ЛОКАЦИИ === -->
+<div class="phone"><div class="phone-inner"><div class="notch"></div>
+  <div class="screen" style="background: #fff; min-height: 460px; justify-content: flex-start; padding-top: 50px;">
+    <div class="lbl">10 — Локации (опц.)</div>
+    <div class="lbl-r">IMG</div>
+    <div class="placeholder" style="min-height: 160px; margin-bottom: 20px;">
+      Карта с двумя метками<br>(Бежица + Советский)
+    </div>
+    <div style="text-align: left; width: 100; font-size: 14px; line-height: 1.6;">
+      <div style="margin-bottom: 16px;">
+        <div style="font-weight: 700; color: #5cccb0; font-size: 13px; text-transform: uppercase; letter-spacing: .5px;">Бежицкий район</div>
+        <div style="color: #333;">ул. 3 Интернационала, 6а, 2 этаж</div>
+        <div style="color: #999; font-size: 13px;">ежедневно 09:00–21:00</div>
+      </div>
+      <div style="margin-bottom: 16px;">
+        <div style="font-weight: 700; color: #5cccb0; font-size: 13px; text-transform: uppercase; letter-spacing: .5px;">Советский район</div>
+        <div style="color: #333;">ул. Красноармейская, 15, к3</div>
+        <div style="color: #999; font-size: 13px;">ежедневно 09:30–21:00</div>
+      </div>
+      <div style="font-size: 14px; font-weight: 600; color: #555;">Выбери удобную студию при записи.</div>
+    </div>
+  </div>
+  <div class="cta"><button class="cta-btn">Записаться на пробную</button></div>
+</div></div>
+
+</body>
+</html>

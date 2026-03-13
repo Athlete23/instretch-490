@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InStretch — Прототип лендингов для ВК лид-формы</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: #f0f0f0;
+    color: #111;
+    padding: 40px 0;
+  }
+
+  /* === NAV === */
+  .nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: #111; color: #fff;
+    display: flex; gap: 0; overflow-x: auto;
+    font-size: 13px; font-weight: 600;
+  }
+  .nav a {
+    color: #999; text-decoration: none;
+    padding: 14px 18px; white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all .2s;
+  }
+  .nav a:hover, .nav a.active { color: #fff; border-bottom-color: #5cccb0; }
+
+  /* === PHONE FRAME === */
+  .format-section {
+    max-width: 800px; margin: 0 auto 80px;
+    padding: 60px 20px 20px;
+  }
+  .format-title {
+    font-size: 28px; font-weight: 900; margin-bottom: 6px;
+    color: #111;
+  }
+  .format-subtitle {
+    font-size: 15px; color: #666; margin-bottom: 30px;
+    line-height: 1.5;
+  }
+  .format-subtitle span {
+    display: inline-block; background: #5cccb0; color: #fff;
+    padding: 2px 8px; border-radius: 4px; font-weight: 600; font-size: 12px;
+    margin-right: 6px;
+  }
+
+  .phone {
+    width: 375px; margin: 0 auto 40px;
+    background: #000; border-radius: 40px;
+    padding: 14px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.2);
+    position: relative;
+  }
+  .phone-inner {
+    border-radius: 28px; overflow: hidden;
+    background: #fff;
+  }
+  .phone-notch {
+    height: 34px; background: #000; border-radius: 28px 28px 0 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .phone-notch::after {
+    content: ''; width: 80px; height: 6px;
+    background: #333; border-radius: 3px;
+  }
+
+  /* === SCREENS === */
+  .screen {
+    width: 100%; min-height: 580px;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    padding: 40px 28px;
+    position: relative;
+    text-align: center;
+  }
+  .screen--dark { background: #111; color: #fff; }
+  .screen--white { background: #fff; color: #111; }
+  .screen--warm { background: #faf6f2; color: #111; }
+  .screen--note { background: #fffde7; color: #333; }
+  .screen--mint { background: #e8f5f1; color: #111; }
+  .screen--photo {
+    background: #ddd; color: #fff;
+    position: relative; overflow: hidden;
+  }
+  .screen--gradient {
+    background: linear-gradient(180deg, #111 0%, #1a2a25 100%);
+    color: #fff;
+  }
+
+  .screen-label {
+    position: absolute; top: 12px; left: 12px;
+    background: rgba(0,0,0,.7); color: #5cccb0;
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 4px;
+    letter-spacing: .5px;
+    z-index: 2;
+  }
+  .screen--dark .screen-label,
+  .screen--gradient .screen-label { background: rgba(255,255,255,.15); }
+
+  .screen-type {
+    position: absolute; top: 12px; right: 12px;
+    background: rgba(92,204,176,.2); color: #5cccb0;
+    font-size: 10px; font-weight: 700;
+    padding: 4px 10px; border-radius: 4px;
+    z-index: 2;
+  }
+
+  /* === TEXT STYLES === */
+  .hero-text {
+    font-size: 26px; font-weight: 700; line-height: 1.35;
+    text-align: center;
+  }
+  .hero-text em {
+    font-style: normal; opacity: .5;
+  }
+  .sub-text {
+    font-size: 14px; opacity: .5; margin-top: 30px;
+    line-height: 1.5;
+  }
+  .body-text {
+    font-size: 18px; font-weight: 500; line-height: 1.55;
+    text-align: left; width: 100%;
+  }
+  .body-text strong { font-weight: 700; }
+  .small-text {
+    font-size: 13px; line-height: 1.5; opacity: .7;
+    margin-top: 16px;
+  }
+
+  .checklist {
+    text-align: left; width: 100%;
+    font-size: 16px; line-height: 2.2;
+    font-weight: 500;
+  }
+  .checklist .check {
+    color: #5cccb0; font-weight: 700; margin-right: 8px;
+  }
+  .checklist .dim { opacity: .4; text-decoration: line-through; }
+
+  .divider {
+    width: 40px; height: 2px; background: rgba(255,255,255,.2);
+    margin: 24px auto;
+  }
+  .divider--dark { background: rgba(0,0,0,.1); }
+
+  /* === OFFER CARD === */
+  .offer-card {
+    background: #fff; border-radius: 16px;
+    padding: 28px 24px; width: 100%;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    text-align: left;
+  }
+  .offer-price {
+    font-size: 36px; font-weight: 900; color: #111;
+    margin-bottom: 4px;
+  }
+  .offer-price-old {
+    font-size: 18px; text-decoration: line-through; color: #999;
+    margin-left: 8px; font-weight: 500;
+  }
+  .offer-desc {
+    font-size: 14px; color: #666; margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .offer-bonus {
+    background: #e8f5f1; border-radius: 10px;
+    padding: 14px 16px; font-size: 14px; font-weight: 600;
+    color: #2a8a6e;
+  }
+
+  /* === NOTE STYLE (letter) === */
+  .letter {
+    text-align: left; width: 100%;
+    font-size: 17px; line-height: 1.65;
+    font-weight: 400;
+  }
+  .letter p { margin-bottom: 16px; }
+  .letter .signature {
+    margin-top: 12px; font-weight: 600;
+    opacity: .6; font-size: 14px;
+  }
+
+  /* === RATING === */
+  .rating-block {
+    text-align: center;
+  }
+  .rating-score {
+    font-size: 72px; font-weight: 900; line-height: 1;
+  }
+  .rating-stars {
+    font-size: 28px; color: #fbbf24; margin: 8px 0;
+    letter-spacing: 4px;
+  }
+  .rating-count {
+    font-size: 16px; font-weight: 600; opacity: .7;
+  }
+  .rating-source {
+    font-size: 12px; opacity: .4; margin-top: 4px;
+  }
+
+  /* === QUIZ SLIDE === */
+  .quiz-question {
+    font-size: 22px; font-weight: 800; margin-bottom: 28px;
+    text-align: center;
+  }
+  .quiz-options {
+    width: 100%; text-align: left;
+  }
+  .quiz-option {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px; margin-bottom: 10px;
+    background: #f4f4f4; border-radius: 12px;
+    font-size: 15px; font-weight: 500;
+  }
+  .quiz-checkbox {
+    width: 22px; height: 22px; border: 2px solid #ccc;
+    border-radius: 6px; flex-shrink: 0;
+  }
+  .quiz-footer {
+    margin-top: 24px; font-size: 13px; color: #888;
+    text-align: center; font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* === REVIEW CARD === */
+  .review-card {
+    background: #fff; border-radius: 14px;
+    padding: 20px; text-align: left; width: 100%;
+    border: 1px solid #eee;
+  }
+  .review-header {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 10px;
+  }
+  .review-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #ddd;
+  }
+  .review-name { font-size: 14px; font-weight: 700; }
+  .review-date { font-size: 12px; color: #999; }
+  .review-stars { color: #fbbf24; font-size: 14px; margin-bottom: 8px; }
+  .review-text {
+    font-size: 14px; line-height: 1.55; color: #333;
+  }
+  .review-text mark {
+    background: #fef08a; padding: 1px 3px;
+    border-radius: 2px;
+  }
+  .review-card + .review-card { margin-top: 12px; }
+
+  /* === STICKY CTA (simulated) === */
+  .sticky-cta {
+    width: 100%; padding: 16px 28px 30px;
+    background: #fff;
+    border-top: 1px solid #eee;
+  }
+  .sticky-cta-btn {
+    width: 100%; padding: 16px;
+    background: #5cccb0; color: #fff;
+    border: none; border-radius: 12px;
+    font-size: 16px; font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  /* === VIDEO PLACEHOLDER === */
+  .video-placeholder {
+    width: 100%; aspect-ratio: 9/16;
+    background: #222; border-radius: 12px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    color: #fff; gap: 12px;
+    max-height: 460px;
+  }
+  .video-play {
+    width: 60px; height: 60px;
+    border: 3px solid rgba(255,255,255,.5);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+  }
+  .video-caption {
+    font-size: 12px; opacity: .5; text-align: center;
+    padding: 0 20px; line-height: 1.5;
+  }
+  .video-subs {
+    position: absolute; bottom: 80px; left: 20px; right: 20px;
+    background: rgba(0,0,0,.75); color: #fff;
+    padding: 12px 16px; border-radius: 8px;
+    font-size: 14px; line-height: 1.4;
+    text-align: left;
+  }
+
+  /* === PHOTO PLACEHOLDER === */
+  .photo-placeholder {
+    width: 100%; min-height: 300px;
+    background: linear-gradient(135deg, #bbb, #999);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 13px; text-align: center;
+    padding: 20px;
+    line-height: 1.5;
+  }
+
+  /* === CAROUSEL INDICATOR === */
+  .carousel-dots {
+    display: flex; gap: 6px; justify-content: center;
+    margin-top: 16px;
+  }
+  .carousel-dots .dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #ddd;
+  }
+  .carousel-dots .dot.active { background: #5cccb0; width: 20px; border-radius: 4px; }
+
+  /* === ANNOTATIONS === */
+  .annotation {
+    max-width: 375px; margin: -20px auto 40px;
+    background: #fff3cd; border-left: 4px solid #fbbf24;
+    padding: 12px 16px; border-radius: 0 8px 8px 0;
+    font-size: 12px; line-height: 1.5; color: #666;
+  }
+  .annotation strong { color: #333; }
+
+  /* === SEPARATOR === */
+  .format-separator {
+    max-width: 800px; margin: 0 auto;
+    border: none; border-top: 3px dashed #ddd;
+    margin-bottom: 60px;
+  }
+
+  /* === CAROUSEL SIMULATION === */
+  .carousel-wrap {
+    width: 100%; overflow-x: auto; overflow-y: hidden;
+    display: flex; gap: 8px; padding: 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .carousel-wrap::-webkit-scrollbar { display: none; }
+  .carousel-slide {
+    min-width: 100%; scroll-snap-align: start;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#format-a" class="active">A: Провокация</a>
+  <a href="#format-e">E: Цифры</a>
+  <a href="#format-c">C: Анти-лендинг</a>
+  <a href="#format-d">D: Квиз</a>
+  <a href="#format-b">B: Сторителлинг</a>
+</nav>
+
+<!-- ============================================== -->
+<!-- ФОРМАТ A — ПРОВОКАЦИЯ -->
+<!-- ============================================== -->
+<section class="format-section" id="format-a">
+  <div class="format-title">ФОРМАТ A — Провокация</div>
+  <div class="format-subtitle">
+    <span>ХОЛОДНАЯ</span> Urgency-креативы, похудение, «к лету». 5 экранов + видео.
+  </div>
+
+  <!-- ЭКРАН 1 -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--dark" style="min-height: 620px;">
+        <div class="screen-label">Экран 1 — Удар</div>
+        <div class="screen-type">IMG</div>
+        <div class="hero-text" style="font-size: 24px;">
+          Каждый март ты обещаешь себе<br>«к лету точно».<br><br>
+          <em>Потом июнь.</em><br>
+          <em>Потом «ну ладно, к следующему».</em><br><br>
+          2026-й. Снова март.
+        </div>
+        <div class="sub-text">Листай — если хочешь, чтобы<br>в этот раз было по-другому ↓</div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЭКРАН 2 -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: 640px; justify-content: flex-start; padding-top: 60px;">
+        <div class="screen-label">Экран 2 — Потери</div>
+        <div class="screen-type">IMG</div>
+        <div style="text-align: left; width: 100%;">
+          <div style="font-size: 13px; color: #999; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;">
+            Если бы ты начала<br>в прошлом марте:
+          </div>
+          <div class="checklist">
+            <div><span class="check">&#10003;</span> минус 8–12 кг</div>
+            <div><span class="check">&#10003;</span> шпагат или близко к нему</div>
+            <div><span class="check">&#10003;</span> спина перестала бы болеть</div>
+            <div><span class="check">&#10003;</span> 48 тренировок за спиной</div>
+          </div>
+          <div class="divider divider--dark" style="margin-left:0;"></div>
+          <div style="font-size: 20px; font-weight: 800; margin-top: 24px; line-height: 1.4;">
+            Ты не начала.<br>Вот и разница.
+          </div>
+          <div style="font-size: 15px; color: #888; margin-top: 20px; line-height: 1.5;">
+            Следующий март будет. Вопрос&nbsp;— ты снова будешь читать такой же текст?
+          </div>
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЭКРАН 3 — ВИДЕО -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--dark" style="min-height: 620px; padding: 20px;">
+        <div class="screen-label">Экран 3 — Видео</div>
+        <div class="screen-type">VIDEO 15–20s</div>
+        <div class="video-placeholder" style="width: 100%; max-height: none; aspect-ratio: 9/14;">
+          <div class="video-play">&#9654;</div>
+          <div class="video-caption">
+            UGC-видео: одна девушка, одна тренировка.<br>
+            Тяжело → тренер помогает → смеётся → довольная
+          </div>
+        </div>
+        <div class="video-subs" style="position: relative; bottom: auto; margin-top: 12px;">
+          Это Маша. Первая тренировка. Говорила «я деревянная». Через 2 месяца села на шпагат. Ей 34.
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЭКРАН 3.5 — РЕЙТИНГ -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: 420px;">
+        <div class="screen-label">Экран 3.5 — Рейтинг</div>
+        <div class="screen-type">IMG</div>
+        <div class="rating-block">
+          <div class="rating-score">5.0</div>
+          <div class="rating-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="rating-count">216 отзывов на Яндекс Картах</div>
+        </div>
+        <div class="divider divider--dark"></div>
+        <div style="font-size: 15px; font-style: italic; color: #555; line-height: 1.5; max-width: 300px;">
+          &laquo;Мы не продаём больше абонементов, чем можем обслужить. У нас не будет сюрпризов, что все места заняты. Это честно.&raquo;
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЭКРАН 4 — ОФФЕР -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--warm" style="min-height: 660px;">
+        <div class="screen-label">Экран 4 — Оффер-письмо</div>
+        <div class="screen-type">IMG</div>
+        <div class="letter">
+          <p>Слушай, я не знаю, откуда ты пришла и что видела в рекламе.</p>
+          <p>Но вот что могу предложить: приходи на <strong>2 тренировки за 490&nbsp;&#8381;</strong>. Это стоимость кофе с собой.</p>
+          <p>Тебе не понравится — просто не придёшь больше, никто не будет звонить и упрашивать.</p>
+          <p>Понравится — ну, сама увидишь.</p>
+          <p><strong>+ программа питания на 6 недель в подарок,</strong> чтобы результат был быстрее.</p>
+          <div class="signature">— Основатель InStretch</div>
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЭКРАН 5 — АНТИПРИЗЫВ -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--dark" style="min-height: 580px;">
+        <div class="screen-label">Экран 5 — Закрытие</div>
+        <div class="screen-type">IMG</div>
+        <div class="body-text" style="color: #fff; text-align: center;">
+          <div style="font-size: 20px; font-weight: 700; margin-bottom: 30px;">Два варианта:</div>
+          <div style="font-size: 16px; line-height: 1.6; font-weight: 400;">
+            <strong>1.</strong> Ты нажимаешь кнопку, оставляешь имя и телефон, приходишь попробовать за 490&nbsp;&#8381;.<br><br>
+            <strong>2.</strong> Ты закрываешь это, обещаешь себе «как-нибудь потом» и через год читаешь такой же текст.
+          </div>
+          <div class="divider" style="margin: 30px auto;"></div>
+          <div style="font-size: 15px; opacity: .5;">
+            Оба варианта — твой выбор.<br>Мы просто тут.
+          </div>
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="format-separator">
+
+<!-- ============================================== -->
+<!-- ФОРМАТ E — ЦИФРЫ НЕ ВРУТ -->
+<!-- ============================================== -->
+<section class="format-section" id="format-e">
+  <div class="format-title">ФОРМАТ E — Цифры не врут</div>
+  <div class="format-subtitle">
+    <span>ЛЮБАЯ</span> Соцдоказательство. Мы ничего не обещаем — за нас говорят 216 отзывов.
+  </div>
+
+  <!-- ЭКРАН 1 -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: 600px;">
+        <div class="screen-label">Экран 1 — Рейтинг</div>
+        <div class="screen-type">IMG</div>
+        <div class="rating-block">
+          <div class="rating-score" style="font-size: 96px;">5.0</div>
+          <div class="rating-stars" style="font-size: 36px;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="rating-count" style="font-size: 18px; margin-top: 8px;">216 отзывов</div>
+          <div class="rating-source" style="margin-top: 4px;">InStretch &middot; Яндекс Карты</div>
+        </div>
+        <div class="divider divider--dark" style="margin: 28px auto;"></div>
+        <div style="font-size: 17px; font-weight: 600; line-height: 1.5;">
+          Это не мы про себя.<br>
+          Это 216 человек про нас.
+        </div>
+        <div class="sub-text" style="opacity: .4;">Листай — покажем, что они пишут ↓</div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЭКРАН 2 — ОТЗЫВЫ (КАРУСЕЛЬ) -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: auto; padding: 50px 16px 20px;">
+        <div class="screen-label">Экран 2 — Отзывы</div>
+        <div class="screen-type">КАРУСЕЛЬ</div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar"></div>
+            <div>
+              <div class="review-name">Татьяна Рославцева</div>
+              <div class="review-date">10 октября 2025</div>
+            </div>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="review-text">
+            Прекрасный персонал и высокая профессиональная подготовка тренеров создают невероятно дружескую и тёплую атмосферу — <mark>будто пришла не в студию, а в гости к близким подругам</mark>. Очень комфортно находиться здесь и заниматься. Хотя я была всего на двух тренировках, уже чувствую себя обновлённой и полной сил.
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar"></div>
+            <div>
+              <div class="review-name">Nazhna</div>
+              <div class="review-date">27 февраля</div>
+            </div>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="review-text">
+            Очень уютное и атмосферное пространство! <mark>Я ходила в разные фитнесы, но только это место сохранило во мне желание приходить сюда снова и снова</mark>. Доброжелательные тренеры и администраторы, чистота, маленькие группы и нет толп народа.
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="review-header">
+            <div class="review-avatar"></div>
+            <div>
+              <div class="review-name">Ирина Кира</div>
+              <div class="review-date">2 октября 2025</div>
+            </div>
+          </div>
+          <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <div class="review-text">
+            <mark>Пришла в студию на пару пробных занятий, потом приобрела абонемент на 24 занятия</mark>. Мне очень понравилось: обстановка, светлое помещение, уютное, раздевалка, душ. С входа тебя встречают очень приятные девушки-администраторы.
+          </div>
+        </div>
+
+        <div class="carousel-dots" style="margin-top: 16px; margin-bottom: 8px;">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="annotation">
+    <strong>Примечание:</strong> В ВК это будет карусель. Каждый отзыв = отдельный слайд. Тут показаны все подряд для наглядности. Выделенный текст — подчеркнуть маркером на картинке.
+  </div>
+
+  <!-- ЭКРАН 3 -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--mint" style="min-height: 560px;">
+        <div class="screen-label">Экран 3 — Мостик к офферу</div>
+        <div class="screen-type">IMG</div>
+        <div class="photo-placeholder" style="min-height: 200px; border-radius: 12px; margin-bottom: 24px;">
+          Реальное фото группы<br>с тренировки InStretch
+        </div>
+        <div style="font-size: 18px; font-weight: 600; line-height: 1.55; text-align: left;">
+          Все эти девушки начали одинаково:<br>
+          <strong>2 тренировки. 490&nbsp;&#8381;. Без обязательств.</strong>
+        </div>
+        <div style="font-size: 15px; color: #666; margin-top: 16px; line-height: 1.5; text-align: left;">
+          Кто-то остался. Кто-то вернулся через месяц. Кто-то привёл подруг.<br><br>
+          Но все — <strong>попробовали</strong>.
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЭКРАН 4 -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: 480px;">
+        <div class="screen-label">Экран 4 — Закрытие</div>
+        <div class="screen-type">IMG</div>
+        <div style="font-size: 48px; font-weight: 900; color: #111; margin-bottom: 4px;">216</div>
+        <div style="font-size: 16px; color: #666; margin-bottom: 24px;">девушек поставили нам 5 из 5</div>
+        <div class="divider divider--dark"></div>
+        <div style="font-size: 22px; font-weight: 700; margin-top: 24px; line-height: 1.4;">
+          Может, 217-я — это ты?
+        </div>
+        <div style="font-size: 14px; color: #999; margin-top: 20px; line-height: 1.5;">
+          Имя + телефон. 30 секунд. Мы напишем.
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="format-separator">
+
+<!-- ============================================== -->
+<!-- ФОРМАТ C — АНТИ-ЛЕНДИНГ -->
+<!-- ============================================== -->
+<section class="format-section" id="format-c">
+  <div class="format-title">ФОРМАТ C — Анти-лендинг</div>
+  <div class="format-subtitle">
+    <span>РЕТАРГЕТ</span> Для тёплых. 2 экрана. Минимализм. Шёпот вместо крика.
+  </div>
+
+  <!-- ЭКРАН 1 -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: 520px;">
+        <div class="screen-label">Экран 1</div>
+        <div class="screen-type">IMG</div>
+        <div style="font-size: 22px; font-weight: 600; line-height: 1.5; max-width: 300px;">
+          490&nbsp;&#8381; и 55 минут&nbsp;—<br>
+          это правда всё, что стоит между тобой и тем телом, которое ты хочешь.
+        </div>
+        <div style="font-size: 18px; font-weight: 700; margin-top: 30px; color: #111;">
+          Серьёзно. Проверь.
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЭКРАН 2 -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: 480px; justify-content: flex-start; padding-top: 60px;">
+        <div class="screen-label">Экран 2</div>
+        <div class="screen-type">IMG</div>
+        <div style="text-align: left; width: 100%;">
+          <div style="font-size: 28px; font-weight: 900; margin-bottom: 24px;">
+            2 тренировки — 490&nbsp;&#8381;
+          </div>
+          <div style="font-size: 16px; line-height: 2.2; font-weight: 500; color: #444;">
+            + программа питания на 6 недель<br>
+            + студия только для девушек<br>
+            + тренер на группу из 8 человек<br>
+            + 10 минут от дома
+          </div>
+          <div class="divider divider--dark" style="margin-left:0; margin-top: 28px; margin-bottom: 28px;"></div>
+          <div style="font-size: 18px; font-weight: 700;">
+            Всё. Нажми кнопку.
+          </div>
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="format-separator">
+
+<!-- ============================================== -->
+<!-- ФОРМАТ D — КВИЗ -->
+<!-- ============================================== -->
+<section class="format-section" id="format-d">
+  <div class="format-title">ФОРМАТ D — Карусельный квиз</div>
+  <div class="format-subtitle">
+    <span>ЛЮБАЯ</span> Имитация квиза. 5 слайдов карусели + 1 экран закрытие.
+  </div>
+
+  <!-- СЛАЙД 1 -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: 560px; justify-content: flex-start; padding-top: 60px;">
+        <div class="screen-label">Слайд 1/5</div>
+        <div class="screen-type">КАРУСЕЛЬ</div>
+        <div class="quiz-question">Что тебе ближе?</div>
+        <div class="quiz-options">
+          <div class="quiz-option"><div class="quiz-checkbox"></div> Хочу похудеть</div>
+          <div class="quiz-option"><div class="quiz-checkbox"></div> Хочу гибкость и шпагат</div>
+          <div class="quiz-option"><div class="quiz-checkbox"></div> Болит спина, хочу осанку</div>
+          <div class="quiz-option"><div class="quiz-checkbox"></div> Хочу тонус и энергию</div>
+        </div>
+        <div class="quiz-footer">Листай &rarr; у нас есть вариант для каждого</div>
+        <div class="carousel-dots" style="margin-top: 20px;">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- СЛАЙД 2 -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: 520px; justify-content: flex-start; padding-top: 60px;">
+        <div class="screen-label">Слайд 2/5</div>
+        <div class="screen-type">КАРУСЕЛЬ</div>
+        <div class="quiz-question">Ты уже занималась спортом?</div>
+        <div class="quiz-options">
+          <div class="quiz-option"><div class="quiz-checkbox"></div> Да, но забросила</div>
+          <div class="quiz-option"><div class="quiz-checkbox"></div> Никогда толком</div>
+          <div class="quiz-option"><div class="quiz-checkbox"></div> Хожу, но хочу попробовать новое</div>
+        </div>
+        <div class="quiz-footer">Неважно. 80% наших девочек начинали с нуля</div>
+        <div class="carousel-dots" style="margin-top: 20px;">
+          <div class="dot"></div>
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- СЛАЙД 3 -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: 560px; justify-content: flex-start; padding-top: 60px;">
+        <div class="screen-label">Слайд 3/5</div>
+        <div class="screen-type">КАРУСЕЛЬ</div>
+        <div class="quiz-question">Что тебя останавливает?</div>
+        <div class="quiz-options">
+          <div class="quiz-option"><div class="quiz-checkbox"></div> Стесняюсь</div>
+          <div class="quiz-option"><div class="quiz-checkbox"></div> Нет времени</div>
+          <div class="quiz-option"><div class="quiz-checkbox"></div> Кажется, это дорого</div>
+          <div class="quiz-option"><div class="quiz-checkbox"></div> Не верю, что получится</div>
+        </div>
+        <div class="quiz-footer">Мы слышим это каждый день.<br>И каждый день доказываем обратное</div>
+        <div class="carousel-dots" style="margin-top: 20px;">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- СЛАЙД 4 -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: 440px; justify-content: flex-start; padding-top: 60px;">
+        <div class="screen-label">Слайд 4/5</div>
+        <div class="screen-type">КАРУСЕЛЬ</div>
+        <div class="quiz-question">Какой район удобнее?</div>
+        <div class="quiz-options">
+          <div class="quiz-option"><div class="quiz-checkbox"></div> Бежицкий — ул. 3 Интернационала, 6а</div>
+          <div class="quiz-option"><div class="quiz-checkbox"></div> Советский — ул. Красноармейская, 15</div>
+        </div>
+        <div class="quiz-footer">2 студии — 10 минут от центра каждого района</div>
+        <div class="carousel-dots" style="margin-top: 20px;">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot active"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- СЛАЙД 5 — РЕЗУЛЬТАТ -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--gradient" style="min-height: 560px;">
+        <div class="screen-label">Слайд 5/5 — Результат</div>
+        <div class="screen-type">КАРУСЕЛЬ</div>
+        <div style="font-size: 13px; text-transform: uppercase; letter-spacing: 2px; opacity: .5; margin-bottom: 16px;">Твой результат</div>
+        <div style="font-size: 22px; font-weight: 700; line-height: 1.45; margin-bottom: 24px;">
+          Тебе подойдёт:<br>пробные 2 тренировки<br>за 490&nbsp;&#8381;
+        </div>
+        <div style="font-size: 14px; opacity: .6; line-height: 1.6;">
+          12 направлений. Группы до 8 человек.<br>
+          Только для девушек. Рейтинг 5.0.
+        </div>
+        <div class="divider"></div>
+        <div style="font-size: 15px; font-weight: 600;">
+          Нажми кнопку ниже ↓
+        </div>
+        <div class="carousel-dots" style="margin-top: 20px;">
+          <div class="dot" style="background: rgba(255,255,255,.3);"></div>
+          <div class="dot" style="background: rgba(255,255,255,.3);"></div>
+          <div class="dot" style="background: rgba(255,255,255,.3);"></div>
+          <div class="dot" style="background: rgba(255,255,255,.3);"></div>
+          <div class="dot active" style="background: #5cccb0;"></div>
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЭКРАН ПОСЛЕ КАРУСЕЛИ -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: 400px;">
+        <div class="screen-label">Экран после карусели</div>
+        <div class="screen-type">IMG</div>
+        <div style="font-size: 18px; font-weight: 600; line-height: 1.55;">
+          Ты дошла досюда — значит, тебе уже интересно.
+        </div>
+        <div style="font-size: 15px; color: #666; margin-top: 16px; line-height: 1.5;">
+          Осталось 30 секунд: имя + телефон.<br>
+          Мы напишем, поможем выбрать направление и время.
+        </div>
+        <div class="divider divider--dark"></div>
+        <div style="font-size: 16px; font-weight: 700; margin-top: 12px;">
+          490&nbsp;&#8381;. Без обязательств. Просто попробуй.
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="format-separator">
+
+<!-- ============================================== -->
+<!-- ФОРМАТ B — СТОРИТЕЛЛИНГ -->
+<!-- ============================================== -->
+<section class="format-section" id="format-b">
+  <div class="format-title">ФОРМАТ B — Сторителлинг</div>
+  <div class="format-subtitle">
+    <span>ТЁПЛАЯ</span> Одна героиня. Мини-документалка. Нужна реальная история + фото/видео.
+  </div>
+
+  <!-- ЭКРАН 1 — ДО -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--dark" style="min-height: 620px; padding: 20px;">
+        <div class="screen-label">Экран 1 — До</div>
+        <div class="screen-type">IMG</div>
+        <div class="photo-placeholder" style="min-height: 300px; border-radius: 12px; margin-bottom: 20px; background: linear-gradient(135deg, #555, #333);">
+          Реальное фото клиентки «до»<br>
+          (в зеркале / повседневная одежда / не постановочное)
+        </div>
+        <div style="text-align: left; width: 100%; color: #fff;">
+          <div style="font-size: 20px; font-weight: 700; margin-bottom: 12px;">Это Катя. Январь 2025.</div>
+          <div style="font-size: 15px; line-height: 1.6; opacity: .8;">
+            78 кг. Болела спина каждый день.<br>
+            В зал стеснялась.<br>
+            Подруга скинула ссылку на InStretch.<br>
+            <strong>Она не хотела идти.</strong>
+          </div>
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЭКРАН 2 — ВИДЕО -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--dark" style="min-height: 580px; padding: 20px;">
+        <div class="screen-label">Экран 2 — Процесс</div>
+        <div class="screen-type">VIDEO 20–30s</div>
+        <div class="video-placeholder" style="width: 100%; max-height: none; aspect-ratio: 9/14;">
+          <div class="video-play">&#9654;</div>
+          <div class="video-caption">
+            Нарезка: 1-е занятие (неуклюже) &rarr;<br>
+            через месяц (увереннее) &rarr;<br>
+            через 3 месяца (шпагат)<br><br>
+            Субтитры с датами и фразами от Кати
+          </div>
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЭКРАН 3 — ПОСЛЕ -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: 620px; padding: 20px 28px;">
+        <div class="screen-label">Экран 3 — После</div>
+        <div class="screen-type">IMG</div>
+        <div class="photo-placeholder" style="min-height: 300px; border-radius: 12px; margin-bottom: 20px; background: linear-gradient(135deg, #8ecfb9, #5cccb0);">
+          Реальное фото Кати «после»<br>
+          (та же поза / зеркало)
+        </div>
+        <div style="text-align: left; width: 100%;">
+          <div style="font-size: 20px; font-weight: 700; margin-bottom: 12px;">Март 2026.</div>
+          <div style="font-size: 16px; line-height: 1.7; color: #333;">
+            Минус 11 кг. Спина не болит 8 месяцев.<br>
+            Шпагат. Да, она села на шпагат.<br>
+            И теперь сама приводит подруг.
+          </div>
+          <div style="margin-top: 16px; font-size: 14px; color: #888; line-height: 1.5;">
+            Катя ходит 3 раза в неделю.<br>Абонемент стоит 455&nbsp;&#8381;/тренировка.<br>
+            <strong style="color: #111;">Начала с тех же 490&nbsp;&#8381; за 2 занятия.</strong>
+          </div>
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ЭКРАН 4 — ПЕРЕХОД -->
+  <div class="phone">
+    <div class="phone-inner">
+      <div class="phone-notch"></div>
+      <div class="screen screen--white" style="min-height: 440px;">
+        <div class="screen-label">Экран 4 — Переход на тебя</div>
+        <div class="screen-type">IMG</div>
+        <div style="font-size: 20px; font-weight: 700; line-height: 1.5; max-width: 300px;">
+          У Кати не было ничего, чего нет у тебя.
+        </div>
+        <div style="font-size: 16px; color: #666; margin-top: 12px;">
+          Она просто пришла попробовать.
+        </div>
+        <div class="divider divider--dark" style="margin: 24px auto;"></div>
+        <div style="font-size: 18px; font-weight: 700;">
+          490&nbsp;&#8381;. 2 тренировки. Без обязательств.
+        </div>
+        <div style="font-size: 14px; color: #999; margin-top: 12px;">
+          Нажми кнопку — и начни свою историю.
+        </div>
+      </div>
+      <div class="sticky-cta">
+        <button class="sticky-cta-btn">Записаться на пробную</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="text-align: center; padding: 40px; color: #aaa; font-size: 13px;">
+  InStretch — прототип лендингов для ВК лид-формы<br>
+  Открой в браузере, правь тексты прямо в HTML
+</div>
+
+<script>
+  // Highlight active nav on scroll
+  const sections = document.querySelectorAll('.format-section');
+  const navLinks = document.querySelectorAll('.nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>
