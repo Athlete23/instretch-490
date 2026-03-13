@@ -500,8 +500,11 @@
     font-size: 28px;
     font-weight: 700;
     color: rgba(255,255,255,0.3);
-    display: block;
+    display: inline-block;
     margin-bottom: 8px;
+  }
+  .offer__old-price-wrap {
+    display: block;
   }
   .offer__old-price::after {
     content: '';
@@ -1429,7 +1432,7 @@
 <!-- ========== 7. ОФФЕР ========== -->
 <section class="offer">
   <div class="offer__label">Специальное предложение</div>
-  <div class="offer__old-price">1 100 ₽</div>
+  <div class="offer__old-price-wrap"><span class="offer__old-price">1 100 ₽</span></div>
   <div class="offer__new-price">490 ₽</div>
   <div class="offer__sessions">за 2 пробные тренировки</div>
 
