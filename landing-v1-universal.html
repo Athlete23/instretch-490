@@ -400,25 +400,36 @@
     line-height: 1.45;
   }
 
-  /* ===== VIDEO PLACEHOLDER ===== */
-  .video-block {
+  /* ===== VIDEO ===== */
+  .video-section {
     position: relative;
     width: 100%;
-    height: 280px;
-    background: #0d0b10;
+    background: #0a0a0a;
+    cursor: pointer;
+  }
+  .video-section video {
+    width: 100%;
+    display: block;
+  }
+  .video-section__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
-    gap: 16px;
-    overflow: hidden;
+    transition: opacity 0.3s;
   }
-  .video-block__play {
+  .video-section__overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .video-section__play {
     width: 72px;
     height: 72px;
     border-radius: 50%;
-    background: rgba(13,146,114,0.2);
-    border: 2px solid rgba(13,146,114,0.4);
+    background: rgba(13,146,114,0.3);
+    border: 2px solid rgba(13,146,114,0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -426,7 +437,7 @@
     z-index: 1;
     box-shadow: 0 0 40px rgba(13,146,114,0.15), inset 0 0 20px rgba(13,146,114,0.1);
   }
-  .video-block__play::after {
+  .video-section__play::after {
     content: '';
     display: block;
     width: 0;
@@ -435,12 +446,6 @@
     border-top: 12px solid transparent;
     border-bottom: 12px solid transparent;
     margin-left: 5px;
-  }
-  .video-block__caption {
-    color: rgba(255,255,255,0.35);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 3px;
     text-transform: uppercase;
     position: relative;
     z-index: 1;
@@ -1414,8 +1419,11 @@
 </section>
 
 <!-- ========== 6. ВИДЕО #1 ========== -->
-<section style="width: 100%; background: #0a0a0a;">
-  <video src="img/offer-video-compressed.mp4" autoplay loop muted playsinline style="width: 100%; display: block;"></video>
+<section class="video-section" onclick="var v=this.querySelector('video'),o=this.querySelector('.video-section__overlay');if(v.paused){v.play();o.classList.add('hidden')}else{v.pause();o.classList.remove('hidden')}">
+  <video src="img/offer-video-compressed.mp4" loop muted playsinline preload="metadata" style="width: 100%; display: block;"></video>
+  <div class="video-section__overlay">
+    <div class="video-section__play"></div>
+  </div>
 </section>
 
 <!-- ========== 7. ОФФЕР ========== -->
@@ -1526,8 +1534,11 @@
 </section>
 
 <!-- ========== 10. ВИДЕО #2 ========== -->
-<section style="width: 100%; background: #0a0a0a;">
-  <video src="img/video2-compressed.mp4" autoplay loop muted playsinline style="width: 100%; display: block;"></video>
+<section class="video-section" onclick="var v=this.querySelector('video'),o=this.querySelector('.video-section__overlay');if(v.paused){v.play();v.muted=false;o.classList.add('hidden')}else{v.pause();o.classList.remove('hidden')}">
+  <video src="img/video2-compressed.mp4" loop muted playsinline preload="metadata" style="width: 100%; display: block;"></video>
+  <div class="video-section__overlay">
+    <div class="video-section__play"></div>
+  </div>
 </section>
 
 <!-- ========== 10. ЦЕНЫ ========== -->
