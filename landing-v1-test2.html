@@ -149,6 +149,119 @@
     letter-spacing: -0.3px;
   }
 
+  /* ===== CALORIES ===== */
+  .calories {
+    padding: 52px 24px;
+    background: #0a0a0a;
+    color: #fff;
+  }
+  .calories__title {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  .calories__subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 28px;
+    line-height: 1.5;
+  }
+  .calories__bars {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .calories__bar {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .calories__bar-label {
+    font-size: 13px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+  }
+  .calories__bar-label span {
+    color: rgba(255,255,255,0.45);
+    font-weight: 400;
+  }
+  .calories__bar-track {
+    height: 8px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.08);
+    overflow: hidden;
+  }
+  .calories__bar-fill {
+    height: 100%;
+    border-radius: 4px;
+  }
+  .calories__bar--highlight .calories__bar-label {
+    color: #34d399;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .calories__bar--highlight .calories__bar-label span {
+    color: #34d399;
+  }
+  .calories__bar--highlight .calories__bar-track {
+    height: 10px;
+  }
+  .calories__punchline {
+    margin-top: 24px;
+    font-size: 15px;
+    font-style: italic;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
+  }
+
+  /* ===== DIFFERENCE ===== */
+  .difference {
+    padding: 52px 24px;
+    background: #fff;
+  }
+  .difference__title {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+  .difference__items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .difference__item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .difference__item-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: #ecfdf5;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .difference__item-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: #1a1a1a;
+  }
+  .difference__item-desc {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.45;
+  }
+
   /* ===== ABOUT STUDIO ===== */
   .about {
     padding: 52px 0;
@@ -1178,21 +1291,63 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(6px); }
   }
+
+  /* ===== INSIGHT BLOCKS ===== */
+  .insight {
+    padding: 44px 24px;
+    position: relative;
+  }
+  .insight--warm {
+    background: #faf7f4;
+  }
+  .insight--dark {
+    background: #0a0a0a;
+    color: #fff;
+  }
+  .insight__emoji {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .insight__title {
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .insight--dark .insight__title {
+    color: #34d399;
+  }
+  .insight__text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+  }
+  .insight--dark .insight__text {
+    color: rgba(255,255,255,0.6);
+  }
+  .insight__text b {
+    color: #1a1a1a;
+    font-weight: 700;
+  }
+  .insight--dark .insight__text b {
+    color: #fff;
+  }
 </style>
 </head>
 <body>
 
 <!-- ========== 1. HERO ========== -->
 <section class="hero">
-  <img class="hero__bg" src="img/hero-test.jpg" alt="Тренировка в inStretch">
+  <img class="hero__bg" src="img/hero-test2.jpg" alt="Тренировка в inStretch">
   <div class="hero__content">
     <div class="hero__logo">
       <img src="logo-white.png" alt="inStretch">
     </div>
     <div>
       <div class="hero__text">
-        <h1 class="hero__title">Место, где&nbsp;ты — в&nbsp;своей тарелке</h1>
-        <p class="hero__sub">Женская студия фитнеса: растяжка, гамаки, банджи, функционал и&nbsp;Lady Dance. Никакого дискомфорта, только удовольствие.</p>
+        <h1 class="hero__title">Похудеть — не&nbsp;значит страдать</h1>
+        <p class="hero__sub">Банджи, функционал, TRX — сжигай калории так, чтобы хотелось вернуться завтра. Женская студия в&nbsp;Брянске.</p>
       </div>
       <div class="hero__scroll">↓ листай</div>
     </div>
@@ -1201,30 +1356,103 @@
 
 <!-- ========== 2. БОЛИ ========== -->
 <section class="pains">
-  <h2 class="pains__title">Узнаёшь себя?</h2>
+  <h2 class="pains__title">Знакомо?</h2>
   <ul class="pains__list">
     <li class="pains__item">
       <span class="pains__check">✓</span>
-      <span>Весь день за компом — к вечеру спина и&nbsp;поясница убиты</span>
+      <span>Перепробовала диеты — вес возвращается каждый раз</span>
     </li>
     <li class="pains__item">
       <span class="pains__check">✓</span>
-      <span>Хочешь похудеть, но диеты не&nbsp;работают, а&nbsp;в&nbsp;зал не&nbsp;тянет</span>
+      <span>В зале скучно и&nbsp;непонятно что делать — бросаешь через 2&nbsp;недели</span>
     </li>
     <li class="pains__item">
       <span class="pains__check">✓</span>
-      <span>После родов тело стало чужим — и&nbsp;непонятно, с&nbsp;чего начать</span>
+      <span>Тело изменилось, а&nbsp;любимые вещи уже не&nbsp;сидят как раньше</span>
     </li>
     <li class="pains__item">
       <span class="pains__check">✓</span>
-      <span>Стресс копится, шея зажата, спишь и&nbsp;не&nbsp;высыпаешься</span>
-    </li>
-    <li class="pains__item">
-      <span class="pains__check">✓</span>
-      <span>Хочется заниматься в&nbsp;комфорте, а&nbsp;не&nbsp;в&nbsp;толпе незнакомых людей</span>
+      <span>Нет мотивации — тренируешься одна, и&nbsp;никто не&nbsp;поддерживает</span>
     </li>
   </ul>
-  <p class="pains__cta">Это решаемо. Листай ↓</p>
+  <p class="pains__cta">Есть способ лучше ↓</p>
+</section>
+
+<!-- ========== КАЛОРИИ ========== -->
+<section class="calories">
+  <h2 class="calories__title">Сколько ты сжигаешь за&nbsp;час?</h2>
+  <p class="calories__subtitle">Сравни обычные тренировки с&nbsp;нашими</p>
+
+  <div class="calories__bars">
+    <div class="calories__bar">
+      <div class="calories__bar-label">Ходьба на дорожке <span>200 ккал</span></div>
+      <div class="calories__bar-track"><div class="calories__bar-fill" style="width: 33%; background: rgba(255,255,255,0.15);"></div></div>
+    </div>
+    <div class="calories__bar">
+      <div class="calories__bar-label">Тренажёрный зал <span>350 ккал</span></div>
+      <div class="calories__bar-track"><div class="calories__bar-fill" style="width: 55%; background: rgba(255,255,255,0.2);"></div></div>
+    </div>
+    <div class="calories__bar calories__bar--highlight">
+      <div class="calories__bar-label">Функционал + TRX <span>450 ккал</span></div>
+      <div class="calories__bar-track"><div class="calories__bar-fill" style="width: 75%; background: linear-gradient(90deg, #0d9272, #34d399);"></div></div>
+    </div>
+    <div class="calories__bar calories__bar--highlight">
+      <div class="calories__bar-label">Bungee фитнес <span>500+ ккал</span></div>
+      <div class="calories__bar-track"><div class="calories__bar-fill" style="width: 90%; background: linear-gradient(90deg, #0d9272, #34d399);"></div></div>
+    </div>
+  </div>
+
+  <p class="calories__punchline">Ты сжигаешь больше, а&nbsp;чувствуешь — будто танцевала</p>
+</section>
+
+<!-- ========== ЗДЕСЬ ВСЁ ПО-ДРУГОМУ ========== -->
+<section class="difference">
+  <h2 class="difference__title">Почему здесь получается?</h2>
+
+  <div class="difference__items">
+    <div class="difference__item">
+      <div class="difference__item-icon">🔥</div>
+      <div>
+        <div class="difference__item-title">Не заскучаешь</div>
+        <div class="difference__item-desc">12 видов тренировок — чередуй кардио, силовые и&nbsp;растяжку по&nbsp;настроению</div>
+      </div>
+    </div>
+    <div class="difference__item">
+      <div class="difference__item-icon">👀</div>
+      <div>
+        <div class="difference__item-title">Тренер видит именно тебя</div>
+        <div class="difference__item-desc">Группы до 8 человек — подстроит нагрузку под твой уровень и&nbsp;цели</div>
+      </div>
+    </div>
+    <div class="difference__item">
+      <div class="difference__item-icon">👯</div>
+      <div>
+        <div class="difference__item-title">Пропускать не хочется</div>
+        <div class="difference__item-desc">Девочки поддерживают друг друга — появляется привычка и&nbsp;мотивация</div>
+      </div>
+    </div>
+    <div class="difference__item">
+      <div class="difference__item-icon">📲</div>
+      <div>
+        <div class="difference__item-title">Всё просто</div>
+        <div class="difference__item-desc">Записываешься в&nbsp;приложении за&nbsp;2 секунды — никаких звонков и&nbsp;сложностей</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== СТРЕСС И ПЕРЕЕДАНИЕ ========== -->
+<section class="insight insight--dark">
+  <div class="insight__emoji">🍫</div>
+  <div class="insight__title">Заедаешь стресс? Это не&nbsp;слабость — это кортизол</div>
+  <div class="insight__text">Когда уровень стресса высокий, организм требует быстрых углеводов — это химия, а&nbsp;не&nbsp;характер. <b>Тренировки снижают кортизол</b> — и&nbsp;тяга к&nbsp;сладкому уходит сама. Ты не&nbsp;борешься с&nbsp;собой, а&nbsp;убираешь причину.</div>
+</section>
+
+<!-- ========== ПРИВЫЧКА ЧЕРЕЗ УДОВОЛЬСТВИЕ ========== -->
+<section class="insight insight--warm">
+  <div class="insight__emoji">💡</div>
+  <div class="insight__title">Сила воли заканчивается. Привычка — нет</div>
+  <div class="insight__text">Когда тебе реально нравится тренировка, ты ходишь не&nbsp;потому что «надо», а&nbsp;потому что хочется. <b>12 направлений, классная атмосфера, девочки, с&nbsp;которыми весело</b> — так рождается привычка, которая меняет тело.</div>
 </section>
 
 <!-- ========== 3. О СТУДИИ ========== -->
