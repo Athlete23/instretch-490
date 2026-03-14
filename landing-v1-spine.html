@@ -1,0 +1,1888 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>inStretch — Женская студия фитнеса и растяжки</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Inter', sans-serif;
+    max-width: 430px;
+    margin: 0 auto;
+    background: #f0f0f0;
+    color: #1a1a1a;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  img { display: block; width: 100%; height: auto; }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    background: #080808;
+  }
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    transform: scale(1.25) translateY(-10%);
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 75%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 45%, transparent 100%);
+    z-index: 1;
+  }
+  .hero__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 32px 24px 40px;
+  }
+  .hero__logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .hero__logo img {
+    width: 200px;
+    filter: brightness(10);
+  }
+  .hero__text { color: #fff; }
+  .hero__title {
+    font-size: 34px;
+    font-weight: 900;
+    line-height: 1.08;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+  .hero__sub {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.75);
+  }
+  .hero__scroll {
+    margin-top: 28px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.28);
+    text-align: center;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+
+  /* ===== PAIN POINTS ===== */
+  .pains {
+    padding: 52px 24px;
+    background: #faf7f4;
+  }
+  .pains__title {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.12;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+  }
+  .pains__title::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 3px;
+    background: #0d9272;
+    border-radius: 2px;
+    margin-top: 16px;
+  }
+  .pains__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 28px;
+  }
+  .pains__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 15px;
+    line-height: 1.5;
+    background: #fff;
+    padding: 16px 18px;
+    border-radius: 14px;
+    border-left: 3px solid #0d9272;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .pains__check {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    border-radius: 6px;
+    background: #0d9272;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    margin-top: 1px;
+  }
+  .pains__cta {
+    margin-top: 32px;
+    font-size: 18px;
+    font-weight: 800;
+    color: #0d9272;
+    letter-spacing: -0.3px;
+  }
+
+  /* ===== INSIGHT ===== */
+  .insight {
+    padding: 44px 24px;
+  }
+  .insight--dark {
+    background: #0a0a0a;
+    color: #fff;
+  }
+  .insight--warm {
+    background: #faf7f4;
+  }
+  .insight__emoji {
+    font-size: 32px;
+    margin-bottom: 16px;
+  }
+  .insight__title {
+    font-size: 22px;
+    font-weight: 900;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+  }
+  .insight--dark .insight__title {
+    color: #34d399;
+  }
+  .insight__text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+  }
+  .insight--dark .insight__text {
+    color: rgba(255,255,255,0.6);
+  }
+  .insight__text b {
+    color: #1a1a1a;
+    font-weight: 700;
+  }
+  .insight--dark .insight__text b {
+    color: #fff;
+  }
+
+  /* ===== SOLUTION ===== */
+  .solution {
+    padding: 52px 24px;
+    background: #fff;
+  }
+  .solution__title {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.5px;
+  }
+  .solution__items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .solution__item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .solution__item-icon {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    background: #ecfdf5;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .solution__item-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: #1a1a1a;
+  }
+  .solution__item-desc {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.45;
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline {
+    padding: 48px 24px;
+    background: #faf7f4;
+  }
+  .timeline__title {
+    font-size: 22px;
+    font-weight: 900;
+    margin-bottom: 24px;
+    letter-spacing: -0.3px;
+  }
+  .timeline__items {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    padding-left: 20px;
+  }
+  .timeline__items::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, #0d9272 0%, #34d399 100%);
+    border-radius: 1px;
+  }
+  .timeline__item {
+    position: relative;
+    padding: 0 0 28px;
+  }
+  .timeline__item:last-child {
+    padding-bottom: 0;
+  }
+  .timeline__item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 8px;
+    width: 12px;
+    height: 12px;
+    background: #0d9272;
+    border-radius: 50%;
+    border: 2px solid #faf7f4;
+  }
+  .timeline__item-period {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0d9272;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .timeline__item-text {
+    font-size: 15px;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  /* ===== ABOUT STUDIO ===== */
+  .about {
+    padding: 52px 0;
+    background: #fff;
+  }
+  .about__header {
+    padding: 0 24px;
+    margin-bottom: 28px;
+  }
+  .about__title {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.18;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+  }
+  .about__subtitle {
+    font-size: 15px;
+    font-weight: 500;
+    color: #666;
+    line-height: 1.5;
+  }
+  .about__photos {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    margin-bottom: 28px;
+  }
+  .about__photos::-webkit-scrollbar { display: none; }
+  .about__photos img {
+    flex-shrink: 0;
+    width: 100vw;
+    max-width: 375px;
+    height: 100vw;
+    max-height: 375px;
+    object-fit: cover;
+    scroll-snap-align: start;
+  }
+  .swipe-wrap {
+    position: relative;
+  }
+  .swipe-hint {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.3px;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding: 6px 14px;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    pointer-events: none;
+  }
+  .swipe-hint::after {
+    content: '→';
+    font-size: 12px;
+  }
+  .about__facts {
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .about__fact {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-size: 14px;
+    line-height: 1.5;
+    background: #f8f7f5;
+    border-radius: 14px;
+    padding: 18px 18px;
+  }
+  .about__icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background: #0a0a0a;
+    color: #fff;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+  }
+
+  /* ===== GOALS (results-based) ===== */
+  .goals {
+    padding: 52px 24px;
+    background: #0a0a0a;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .goals::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(13,146,114,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .goals__title {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.12;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+    position: relative;
+  }
+  .goals__title::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 3px;
+    background: #0d9272;
+    border-radius: 2px;
+    margin-top: 14px;
+  }
+  .goals__subtitle {
+    font-size: 15px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 32px;
+    line-height: 1.45;
+    position: relative;
+    margin-top: 16px;
+  }
+  .goals__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: relative;
+  }
+  .goals__card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .goals__emoji {
+    font-size: 28px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .goals__card-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .goals__card-desc {
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ===== DIRECTIONS ===== */
+  .directions {
+    padding: 52px 0;
+    background: #fff;
+  }
+  .directions__header {
+    padding: 0 24px;
+    margin-bottom: 24px;
+  }
+  .directions__title {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+  }
+  .directions__subtitle {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.45;
+  }
+  .directions__scroll {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding: 0 24px;
+    margin-bottom: 24px;
+  }
+  .directions__scroll::-webkit-scrollbar { display: none; }
+  .directions__slide {
+    flex-shrink: 0;
+    width: 280px;
+    height: 373px;
+    border-radius: 16px;
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+  .directions__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .directions__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 0 24px;
+  }
+  .directions__item {
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .directions__item-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .directions__item-desc {
+    font-size: 11.5px;
+    color: #888;
+    line-height: 1.4;
+  }
+  .directions__badge {
+    margin: 20px 24px 0;
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border: 1px solid #6ee7b7;
+    border-radius: 14px;
+    padding: 18px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-align: center;
+    line-height: 1.45;
+  }
+
+  /* ===== VIDEO ===== */
+  .video-section {
+    position: relative;
+    width: 100%;
+    background: #0a0a0a;
+    cursor: pointer;
+  }
+  .video-section video {
+    width: 100%;
+    display: block;
+  }
+  .video-section__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+  }
+  .video-section__overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+  .video-section__play {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: rgba(13,146,114,0.3);
+    border: 2px solid rgba(13,146,114,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 40px rgba(13,146,114,0.15), inset 0 0 20px rgba(13,146,114,0.1);
+  }
+  .video-section__play::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 20px solid rgba(255,255,255,0.9);
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    margin-left: 5px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ===== OFFER ===== */
+  .offer {
+    padding: 60px 24px;
+    background: #0a0a0a;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .offer::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    width: 340px;
+    height: 340px;
+    background: radial-gradient(circle, rgba(13,146,114,0.3) 0%, rgba(13,146,114,0.1) 45%, transparent 70%);
+    pointer-events: none;
+  }
+  .offer::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    border: 1px solid rgba(13,146,114,0.12);
+    pointer-events: none;
+  }
+  .offer__label {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #34d399;
+    margin-bottom: 28px;
+  }
+  .offer__old-price {
+    position: relative;
+    z-index: 1;
+    font-size: 28px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.3);
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .offer__old-price-wrap {
+    display: block;
+  }
+  .offer__old-price::after {
+    content: '';
+    position: absolute;
+    left: -6px;
+    right: -6px;
+    top: 50%;
+    height: 4px;
+    background: #ef4444;
+    transform: rotate(-6deg);
+    border-radius: 2px;
+  }
+  .offer__new-price {
+    position: relative;
+    z-index: 1;
+    font-size: 84px;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 6px;
+    text-shadow: 0 0 60px rgba(13,146,114,0.35);
+    letter-spacing: -3px;
+  }
+  .offer__sessions {
+    position: relative;
+    z-index: 1;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 36px;
+  }
+  .offer__perks {
+    position: relative;
+    z-index: 1;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    text-align: left;
+    margin-bottom: 28px;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .offer__perk {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 1.45;
+    color: rgba(255,255,255,0.8);
+    padding: 14px 18px;
+    background: rgba(255,255,255,0.05);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .offer__perk:last-child {
+    border-bottom: none;
+  }
+  .offer__perk-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #0d9272;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 700;
+  }
+  .offer__note {
+    position: relative;
+    z-index: 1;
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.45;
+    font-weight: 500;
+  }
+
+  /* ===== RATING ===== */
+  .rating {
+    padding: 52px 24px 36px;
+    background: #faf7f4;
+    text-align: center;
+  }
+  .rating__headline {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 28px;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+  }
+  .rating__yandex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .rating__yandex-logo {
+    width: 28px;
+    height: 28px;
+    background: #fc3f1d;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 800;
+  }
+  .rating__yandex-text {
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+  }
+  .rating__score {
+    font-size: 84px;
+    font-weight: 900;
+    color: #1a1a1a;
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -4px;
+  }
+  .rating__stars {
+    font-size: 28px;
+    color: #f59e0b;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+  }
+  .rating__count {
+    font-size: 15px;
+    color: #888;
+    margin-bottom: 16px;
+  }
+  .rating__check {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #0d9272;
+    letter-spacing: 0.3px;
+    padding: 8px 20px;
+    border: 1.5px solid rgba(13,146,114,0.25);
+    border-radius: 100px;
+    background: rgba(13,146,114,0.06);
+  }
+
+  /* ===== REVIEWS CAROUSEL ===== */
+  .reviews {
+    padding: 0 24px 52px;
+    background: #faf7f4;
+  }
+  .reviews__scroll {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .reviews__card {
+    padding: 22px 20px;
+    position: relative;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid rgba(0,0,0,0.05);
+  }
+  .reviews__card::before {
+    content: '\201C';
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 48px;
+    font-weight: 900;
+    color: #a7f3d0;
+    line-height: 1;
+    font-family: Georgia, 'Times New Roman', serif;
+    pointer-events: none;
+  }
+  .reviews__card-stars {
+    color: #f59e0b;
+    font-size: 14px;
+    margin-bottom: 14px;
+    letter-spacing: 2px;
+  }
+  .reviews__card-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: #444;
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .reviews__card-text mark {
+    background: linear-gradient(to top, #fde68a 0%, #fde68a 40%, transparent 40%);
+    padding: 0 2px;
+    border-radius: 0;
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+  .reviews__card-author {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1a1a1a;
+    position: relative;
+    padding-left: 20px;
+  }
+  .reviews__card-author::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 2px;
+    background: #0d9272;
+    border-radius: 1px;
+  }
+
+  /* ===== COMMUNITY ===== */
+  .community {
+    padding: 52px 24px;
+    background: #fff;
+  }
+  .community__title {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.18;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+  }
+  .community__subtitle {
+    font-size: 15px;
+    color: #888;
+    line-height: 1.5;
+    margin-bottom: 28px;
+  }
+  .community__items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .community__item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: #f8f7f5;
+    border-radius: 14px;
+    padding: 18px 18px;
+  }
+  .community__item-icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    background: #fff;
+    border: 1.5px dashed rgba(13,146,114,0.35);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+  .community__item-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: #1a1a1a;
+  }
+  .community__item-desc {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.45;
+  }
+  .community__quote {
+    margin-top: 20px;
+    background: #0a0a0a;
+    border-radius: 14px;
+    padding: 22px 20px;
+    color: #fff;
+    font-size: 15px;
+    line-height: 1.55;
+    font-style: italic;
+    position: relative;
+  }
+  .community__quote::before {
+    content: '\201C';
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(13,146,114,0.25);
+    line-height: 1;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-style: normal;
+  }
+  .community__quote-author {
+    margin-top: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.45);
+    font-style: normal;
+  }
+
+  /* ===== CTA ===== */
+  .cta {
+    padding: 56px 24px;
+    background: #0a0a0a;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta::before {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 200px;
+    background: radial-gradient(ellipse, rgba(13,146,114,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cta__title {
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 1.12;
+    margin-bottom: 14px;
+    letter-spacing: -0.8px;
+    position: relative;
+  }
+  .cta__text {
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.55);
+    position: relative;
+  }
+  .cta__stats {
+    display: flex;
+    gap: 8px;
+    margin-top: 32px;
+    position: relative;
+  }
+  .cta__stat {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 20px 10px;
+    text-align: center;
+  }
+  .cta__stat-num {
+    font-size: 32px;
+    font-weight: 900;
+    color: #34d399;
+    line-height: 1;
+    margin-bottom: 6px;
+    letter-spacing: -1px;
+  }
+  .cta__stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.35;
+    font-weight: 500;
+  }
+
+  /* ===== PRICING ===== */
+  .pricing {
+    padding: 52px 24px;
+    background: #fff;
+  }
+  .pricing__title {
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.12;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+  }
+  .pricing__subtitle {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 32px;
+  }
+  .pricing__subtitle mark {
+    background: linear-gradient(to top, #a7f3d0 0%, #a7f3d0 40%, transparent 40%);
+    padding: 0 2px;
+    border-radius: 0;
+    color: #1a1a1a;
+    font-weight: 600;
+  }
+  .pricing__highlight {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .pricing__from {
+    font-size: 14px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+  .pricing__amount {
+    font-size: 72px;
+    font-weight: 900;
+    color: #1a1a1a;
+    line-height: 1;
+    letter-spacing: -3px;
+    margin-bottom: 4px;
+  }
+  .pricing__per {
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+  }
+  .pricing__tiers {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .pricing__tier {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 18px;
+    background: #f8f7f5;
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .pricing__tier:last-child {
+    border-bottom: none;
+  }
+  .pricing__tier--best {
+    background: #0a0a0a;
+    color: #fff;
+  }
+  .pricing__tier-left {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .pricing__tier-count {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .pricing__tier-duration {
+    font-size: 12px;
+    color: #999;
+    font-weight: 500;
+  }
+  .pricing__tier--best .pricing__tier-duration {
+    color: rgba(255,255,255,0.45);
+  }
+  .pricing__tier-price {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+  }
+  .pricing__tier--best .pricing__tier-price {
+    color: #34d399;
+  }
+  .pricing__bonus {
+    background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+    border: 1px solid #6ee7b7;
+    border-radius: 14px;
+    padding: 18px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    line-height: 1.5;
+  }
+  .pricing__bonus-label {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #0d9272;
+    margin-bottom: 6px;
+  }
+
+  /* ===== APP BLOCK ===== */
+  .app-block {
+    padding: 52px 24px;
+    background: #faf7f4;
+  }
+  .app-block__title {
+    font-size: 26px;
+    font-weight: 900;
+    line-height: 1.18;
+    margin-bottom: 10px;
+    color: #1a1a1a;
+    letter-spacing: -0.5px;
+  }
+  .app-block__subtitle {
+    font-size: 15px;
+    color: #888;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  .app-block__screenshot {
+    margin-bottom: 24px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+  .app-block__screenshot img {
+    width: 100%;
+    display: block;
+  }
+  .app-block__features {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .app-block__feature {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: #fff;
+    border-radius: 14px;
+    padding: 18px 18px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .app-block__feature-num {
+    flex-shrink: 0;
+    font-size: 28px;
+    font-weight: 900;
+    color: #6ee7b7;
+    line-height: 1;
+    margin-top: 2px;
+    letter-spacing: -1px;
+  }
+  .app-block__feature-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 3px;
+    color: #1a1a1a;
+  }
+  .app-block__feature-desc {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.45;
+  }
+
+  /* ===== LOCATIONS ===== */
+  .locations {
+    padding: 52px 24px;
+    background: #0a0a0a;
+    color: #fff;
+  }
+  .locations__title {
+    font-size: 24px;
+    font-weight: 900;
+    margin-bottom: 6px;
+    text-align: center;
+    letter-spacing: -0.5px;
+  }
+  .locations__subtitle {
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .locations__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .locations__card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 16px;
+    padding: 22px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .locations__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(to bottom, #0d9272, #34d399);
+    border-radius: 2px 0 0 2px;
+  }
+  .locations__name {
+    font-size: 17px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .locations__address {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.55;
+  }
+  .locations__phone {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #34d399;
+    text-decoration: none;
+  }
+
+  /* ===== FINAL CTA ===== */
+  .final-cta {
+    padding: 48px 24px 56px;
+    background: linear-gradient(180deg, #0a0a0a 0%, #0a1a16 100%);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(ellipse, rgba(13,146,114,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .final-cta__logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .final-cta__logo img {
+    width: 140px;
+    filter: brightness(10);
+    opacity: 0.9;
+  }
+  .final-cta__title {
+    font-size: 24px;
+    font-weight: 900;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    color: #fff;
+    margin-bottom: 12px;
+    position: relative;
+  }
+  .final-cta__text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.55;
+    margin-bottom: 24px;
+    position: relative;
+  }
+  .final-cta__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(13,146,114,0.15);
+    border: 1.5px solid rgba(13,146,114,0.3);
+    font-size: 20px;
+    color: #34d399;
+    position: relative;
+    animation: bounce-down 1.5s ease infinite;
+  }
+  @keyframes bounce-down {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== 1. HERO ========== -->
+<section class="hero">
+  <img class="hero__bg" src="img/hero-spine.png" alt="Здоровая спина в inStretch">
+  <div class="hero__content">
+    <div class="hero__logo">
+      <img src="logo-white.png" alt="inStretch">
+    </div>
+    <div>
+      <div class="hero__text">
+        <h1 class="hero__title">Хватит терпеть боль в&nbsp;спине</h1>
+        <p class="hero__sub">Мази, массажи, обезболивающие — всё это временно. Мы&nbsp;убираем причину, а&nbsp;не&nbsp;симптомы.</p>
+      </div>
+      <div class="hero__scroll">↓ листай</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 2. БОЛИ ========== -->
+<section class="pains">
+  <h2 class="pains__title">Узнаёшь себя?</h2>
+  <ul class="pains__list">
+    <li class="pains__item">
+      <span class="pains__check">✓</span>
+      <span>К вечеру поясница ноет — хочется только лечь и&nbsp;не&nbsp;двигаться</span>
+    </li>
+    <li class="pains__item">
+      <span class="pains__check">✓</span>
+      <span>Шея зажата, голова тяжёлая — ни&nbsp;массаж, ни&nbsp;мазь не&nbsp;спасают надолго</span>
+    </li>
+    <li class="pains__item">
+      <span class="pains__check">✓</span>
+      <span>Осанка поехала — сутулишься и&nbsp;сама это замечаешь</span>
+    </li>
+    <li class="pains__item">
+      <span class="pains__check">✓</span>
+      <span>Просыпаешься уже уставшая — тело не&nbsp;отдыхает за&nbsp;ночь</span>
+    </li>
+    <li class="pains__item">
+      <span class="pains__check">✓</span>
+      <span>Боишься, что станет хуже — но&nbsp;не&nbsp;знаешь, что делать</span>
+    </li>
+  </ul>
+  <p class="pains__cta">Есть решение ↓</p>
+</section>
+
+<!-- ========== ПОЧЕМУ БОЛИТ ========== -->
+<section class="insight insight--dark">
+  <div class="insight__emoji">🔬</div>
+  <div class="insight__title">Боль — это сигнал, а&nbsp;не&nbsp;диагноз</div>
+  <div class="insight__text">Мышцы спины ослабли от&nbsp;сидячего образа жизни. Они не&nbsp;держат позвоночник — и&nbsp;он&nbsp;перегружается. <b>Таблетки глушат боль, но&nbsp;не&nbsp;убирают причину.</b> Убирают — только тренировки.</div>
+</section>
+
+<!-- ========== ЧТО МЫ ДЕЛАЕМ ========== -->
+<section class="solution">
+  <h2 class="solution__title">Что мы делаем с&nbsp;твоей спиной</h2>
+  <div class="solution__items">
+    <div class="solution__item">
+      <div class="solution__item-icon">💪</div>
+      <div>
+        <div class="solution__item-title">Укрепляем мышечный корсет</div>
+        <div class="solution__item-desc">Спина начинает держать себя сама — без&nbsp;корсетов и&nbsp;бандажей</div>
+      </div>
+    </div>
+    <div class="solution__item">
+      <div class="solution__item-icon">🪂</div>
+      <div>
+        <div class="solution__item-title">Вытяжение в гамаках</div>
+        <div class="solution__item-desc">Аэростретчинг снимает зажимы и&nbsp;декомпрессирует позвоночник</div>
+      </div>
+    </div>
+    <div class="solution__item">
+      <div class="solution__item-icon">🧘</div>
+      <div>
+        <div class="solution__item-title">Работаем с осанкой</div>
+        <div class="solution__item-desc">Пилатес и&nbsp;йога выравнивают тело — ты&nbsp;перестаёшь сутулиться</div>
+      </div>
+    </div>
+    <div class="solution__item">
+      <div class="solution__item-icon">🤲</div>
+      <div>
+        <div class="solution__item-title">Убираем зажимы</div>
+        <div class="solution__item-desc">МФР (миофасциальный релиз) расслабляет глубокие мышцы, которые не&nbsp;достаёт массаж</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ТАЙМЛАЙН РЕЗУЛЬТАТА ========== -->
+<section class="timeline">
+  <h2 class="timeline__title">Когда станет легче?</h2>
+  <div class="timeline__items">
+    <div class="timeline__item">
+      <div class="timeline__item-period">Через 2–3 недели</div>
+      <div class="timeline__item-text">Уходит ежедневная ноющая боль — ты&nbsp;перестаёшь думать о&nbsp;спине</div>
+    </div>
+    <div class="timeline__item">
+      <div class="timeline__item-period">Через месяц</div>
+      <div class="timeline__item-text">Выпрямляется осанка, уходит тяжесть в&nbsp;шее и&nbsp;плечах</div>
+    </div>
+    <div class="timeline__item">
+      <div class="timeline__item-period">Через 2 месяца</div>
+      <div class="timeline__item-text">Забываешь, что вообще болело. Тело держит себя само</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 3. О СТУДИИ ========== -->
+<section class="about">
+  <div class="about__header">
+    <h2 class="about__title">inStretch — женская студия фитнеса и&nbsp;растяжки в&nbsp;Брянске</h2>
+    <p class="about__subtitle">Только девушки. Мини-группы. 12&nbsp;видов тренировок в&nbsp;одном абонементе.</p>
+  </div>
+
+  <div class="swipe-wrap">
+  <div class="about__photos">
+    <img src="img/interior-1.jpeg" alt="Студия inStretch — зал">
+    <img src="img/interior-2.jpeg" alt="Студия inStretch — интерьер">
+    <img src="img/interior-3.jpeg" alt="Студия inStretch — зона тренировок">
+    <img src="img/interior-4.jpeg" alt="Студия inStretch — гамаки">
+    <img src="img/interior-5.jpeg" alt="Студия inStretch — зал">
+    <img src="img/interior-6.jpeg" alt="Студия inStretch — интерьер">
+    <img src="img/interior-7.webp" alt="Студия inStretch — Советский филиал">
+    <img src="img/interior-8.jpeg" alt="Студия inStretch — Советский филиал">
+    <img src="img/interior-9.png" alt="Студия inStretch — Советский филиал">
+    <img src="img/interior-10.jpeg" alt="Студия inStretch — интерьер">
+    <img src="img/interior-11.jpeg" alt="Студия inStretch — интерьер">
+    <img src="img/interior-12.webp" alt="Студия inStretch — Бежицкий филиал">
+    <img src="img/interior-13.jpeg" alt="Студия inStretch — интерьер">
+  </div>
+  <div class="swipe-hint">Листай</div>
+  </div>
+
+  <div class="about__facts">
+    <div class="about__fact">
+      <span class="about__icon">8</span>
+      <span><b>Максимум 8 девушек</b> в группе — тренер видит тебя, а&nbsp;не&nbsp;спину 30-го в&nbsp;зале</span>
+    </div>
+    <div class="about__fact">
+      <span class="about__icon">12</span>
+      <span><b>12 направлений в 1 абонементе</b> — не нужно выбирать, пробуй всё по&nbsp;настроению</span>
+    </div>
+    <div class="about__fact">
+      <span class="about__icon">∞</span>
+      <span><b>Не сгорает</b> — абонемент от 3 до 12&nbsp;месяцев, ходи в&nbsp;своём темпе</span>
+    </div>
+    <div class="about__fact">
+      <span class="about__icon">5.0</span>
+      <span><b>5.0 на Яндекс Картах</b> — 216 отзывов. Не 4.7, не 4.9 — ровно пять</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 4. РЕЗУЛЬТАТЫ ПО ЦЕЛЯМ ========== -->
+<section class="goals">
+  <h2 class="goals__title">Какую задачу решаем?</h2>
+  <p class="goals__subtitle">Одна студия — тренировки под&nbsp;любой запрос. Вот с&nbsp;чем к&nbsp;нам приходят чаще всего:</p>
+
+  <div class="goals__grid">
+    <div class="goals__card">
+      <span class="goals__emoji">🔥</span>
+      <div>
+        <div class="goals__card-title">Похудение</div>
+        <div class="goals__card-desc">Сжигай калории без беговой дорожки. Bungee, TRX, функционалки — тело сушится, а&nbsp;ты&nbsp;кайфуешь</div>
+      </div>
+    </div>
+
+    <div class="goals__card">
+      <span class="goals__emoji">🦴</span>
+      <div>
+        <div class="goals__card-title">Здоровая спина</div>
+        <div class="goals__card-desc">Забудь про ноющую поясницу. Укрепляем мышечный корсет — результат через 2&nbsp;недели</div>
+      </div>
+    </div>
+
+    <div class="goals__card">
+      <span class="goals__emoji">🧘</span>
+      <div>
+        <div class="goals__card-title">Ментальное здоровье</div>
+        <div class="goals__card-desc">Выдохни. Стретчинг, аэройога, гамаки — снимаешь стресс и&nbsp;перезагружаешь голову</div>
+      </div>
+    </div>
+
+    <div class="goals__card">
+      <span class="goals__emoji">🤸</span>
+      <div>
+        <div class="goals__card-title">Шпагат</div>
+        <div class="goals__card-desc">С нуля до шпагата за 3–4 месяца. Даже если сейчас не&nbsp;достаёшь до&nbsp;пола</div>
+      </div>
+    </div>
+
+    <div class="goals__card">
+      <span class="goals__emoji">💪</span>
+      <div>
+        <div class="goals__card-title">Подтянутое тело</div>
+        <div class="goals__card-desc">Рельеф и тонус без штанг. TRX, Bungee, функционалки — работает всё тело за&nbsp;55&nbsp;минут</div>
+      </div>
+    </div>
+
+    <div class="goals__card">
+      <span class="goals__emoji">🍑</span>
+      <div>
+        <div class="goals__card-title">Красивые ягодицы</div>
+        <div class="goals__card-desc">Подтянутая попа без приседаний со&nbsp;штангой. Функционалки, TRX, Bungee — работает</div>
+      </div>
+    </div>
+
+    <div class="goals__card">
+      <span class="goals__emoji">🔮</span>
+      <div>
+        <div class="goals__card-title">Женская энергия и&nbsp;сексуальность</div>
+        <div class="goals__card-desc">Lady Dance, стрип-пластика — раскрепощайся, чувствуй своё тело, включай уверенность</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 5. НАПРАВЛЕНИЯ ========== -->
+<section class="directions">
+  <div class="directions__header">
+    <h2 class="directions__title">Один абонемент — 12&nbsp;видов тренировок</h2>
+    <p class="directions__subtitle">Сегодня растяжка, завтра банджи, послезавтра танцы. Без доплат — выбирай по&nbsp;настроению</p>
+  </div>
+
+  <div class="swipe-wrap">
+  <div class="directions__scroll">
+    <div class="directions__slide"><img src="img/dir-stretching.jpeg" alt="Стретчинг"></div>
+    <div class="directions__slide"><img src="img/hero-aerial.jpg" alt="Аэростретчинг"></div>
+    <div class="directions__slide"><img src="img/dir-bungee.jpeg" alt="Bungee фитнес"></div>
+    <div class="directions__slide"><img src="img/dir-functional.jpeg" alt="TRX петли"></div>
+    <div class="directions__slide"><img src="img/dir-legwork.jpeg" alt="Lady Dance"></div>
+    <div class="directions__slide"><img src="img/dir-yoga.jpeg" alt="Хатха-йога"></div>
+    <div class="directions__slide"><img src="img/dir-fitball.jpeg" alt="Фитбол"></div>
+    <div class="directions__slide"><img src="img/dir-glutes.jpeg" alt="Ягодицы + Пресс"></div>
+    <div class="directions__slide"><img src="img/dir-pushups.jpeg" alt="Подкачка всего тела"></div>
+    <div class="directions__slide"><img src="img/dir-group.jpeg" alt="Групповая тренировка"></div>
+    <div class="directions__slide"><img src="img/dir-stretching2.jpeg" alt="Здоровая спина"></div>
+    <div class="directions__slide"><img src="img/dir-mother.jpeg" alt="Мама с дочкой"></div>
+    <div class="directions__slide"><img src="img/dir-functional2.jpeg" alt="Функциональная тренировка"></div>
+    <div class="directions__slide"><img src="img/dir-fitball2.jpeg" alt="Фитбол"></div>
+    <div class="directions__slide"><img src="img/dir-extra.png" alt="Тренировка"></div>
+  </div>
+  <div class="swipe-hint">Листай</div>
+  </div>
+
+  <div class="directions__grid">
+    <div class="directions__item">
+      <div class="directions__item-name">Стретчинг</div>
+      <div class="directions__item-desc">Шпагат, гибкость, лёгкость</div>
+    </div>
+    <div class="directions__item">
+      <div class="directions__item-name">Аэростретчинг</div>
+      <div class="directions__item-desc">Растяжка в&nbsp;гамаках</div>
+    </div>
+    <div class="directions__item">
+      <div class="directions__item-name">Bungee фитнес</div>
+      <div class="directions__item-desc">Кардио на&nbsp;тросах, драйв</div>
+    </div>
+    <div class="directions__item">
+      <div class="directions__item-name">TRX петли</div>
+      <div class="directions__item-desc">Силовая с&nbsp;собственным весом</div>
+    </div>
+    <div class="directions__item">
+      <div class="directions__item-name">Lady Dance</div>
+      <div class="directions__item-desc">Пластика, раскрепощение</div>
+    </div>
+    <div class="directions__item">
+      <div class="directions__item-name">Здоровая спина</div>
+      <div class="directions__item-desc">Осанка, убираем боль</div>
+    </div>
+    <div class="directions__item">
+      <div class="directions__item-name">Хатха-йога</div>
+      <div class="directions__item-desc">Баланс тела и&nbsp;ума</div>
+    </div>
+    <div class="directions__item">
+      <div class="directions__item-name">Йога-Нидра</div>
+      <div class="directions__item-desc">Глубокое расслабление</div>
+    </div>
+    <div class="directions__item">
+      <div class="directions__item-name">Пилатес</div>
+      <div class="directions__item-desc">Контроль, кор, осанка</div>
+    </div>
+    <div class="directions__item">
+      <div class="directions__item-name">Фитбол</div>
+      <div class="directions__item-desc">Тренировка на&nbsp;мячах</div>
+    </div>
+    <div class="directions__item">
+      <div class="directions__item-name">Ягодицы + Пресс</div>
+      <div class="directions__item-desc">Прицельная работа</div>
+    </div>
+    <div class="directions__item">
+      <div class="directions__item-name">Подкачка всего тела</div>
+      <div class="directions__item-desc">Тонус и&nbsp;рельеф</div>
+    </div>
+  </div>
+
+  <div class="directions__badge">
+    Пришла на растяжку, а завтра — на банджи. Один абонемент = все&nbsp;12&nbsp;направлений
+  </div>
+</section>
+
+<!-- ========== 6. ВИДЕО #1 ========== -->
+<section class="video-section" onclick="var v=this.querySelector('video'),o=this.querySelector('.video-section__overlay');if(v.paused){v.play();o.classList.add('hidden')}else{v.pause();o.classList.remove('hidden')}">
+  <video src="img/offer-video-compressed.mp4" loop muted playsinline preload="metadata" poster="img/offer-video-poster.jpg" style="width: 100%; display: block;"></video>
+  <div class="video-section__overlay">
+    <div class="video-section__play"></div>
+  </div>
+</section>
+
+<!-- ========== 7. ОФФЕР ========== -->
+<section class="offer">
+  <div class="offer__label">Специальное предложение</div>
+  <div class="offer__old-price-wrap"><span class="offer__old-price">1 100 ₽</span></div>
+  <div class="offer__new-price">490 ₽</div>
+  <div class="offer__sessions">за 2 пробные тренировки</div>
+
+  <ul class="offer__perks">
+    <li class="offer__perk">
+      <span class="offer__perk-icon">✓</span>
+      <span>Никаких абонементов — просто приходи и&nbsp;попробуй</span>
+    </li>
+    <li class="offer__perk">
+      <span class="offer__perk-icon">✓</span>
+      <span>Выбери любое направление — хоть все&nbsp;12</span>
+    </li>
+    <li class="offer__perk">
+      <span class="offer__perk-icon">✓</span>
+      <span>Тренер подстроит нагрузку лично под&nbsp;тебя</span>
+    </li>
+    <li class="offer__perk">
+      <span class="offer__perk-icon">✓</span>
+      <span>Не зайдёт — просто не придёшь. Без&nbsp;звонков и&nbsp;уговоров</span>
+    </li>
+  </ul>
+
+  <p class="offer__note">245 ₽ за тренировку — дешевле латте</p>
+</section>
+
+<!-- ========== 8. РЕЙТИНГ + ОТЗЫВЫ ========== -->
+<section class="rating">
+  <div class="rating__headline">Нам не нужна реклама.<br>За нас говорят отзывы</div>
+  <div class="rating__yandex">
+    <div class="rating__yandex-logo">Я</div>
+    <div class="rating__yandex-text">Яндекс Карты</div>
+  </div>
+  <div class="rating__score">5.0</div>
+  <div class="rating__stars">★★★★★</div>
+  <div class="rating__count">216 отзывов — и ни одной четвёрки</div>
+  <div class="rating__check">Проверьте сами на Я.Картах →</div>
+</section>
+
+<section class="reviews">
+  <div class="reviews__scroll">
+    <div class="reviews__card">
+      <div class="reviews__card-stars">★★★★★</div>
+      <div class="reviews__card-text">«<mark>Будто пришла не в студию, а&nbsp;в&nbsp;гости к&nbsp;близким подругам.</mark> Хотя я была всего на двух тренировках, уже чувствую себя обновлённой и полной сил.»</div>
+      <div class="reviews__card-author">Татьяна Рославцева</div>
+    </div>
+
+    <div class="reviews__card">
+      <div class="reviews__card-stars">★★★★★</div>
+      <div class="reviews__card-text">«Я ходила в разные фитнесы, но <mark>только это место сохранило во мне желание приходить сюда снова и&nbsp;снова.</mark> Маленькие группы и&nbsp;нет толп народа.»</div>
+      <div class="reviews__card-author">Nazhna</div>
+    </div>
+
+    <div class="reviews__card">
+      <div class="reviews__card-stars">★★★★★</div>
+      <div class="reviews__card-text">«<mark>Пришла на пару пробных занятий, потом приобрела абонемент на&nbsp;24&nbsp;занятия.</mark> Светлое помещение, уютно, очень приятные администраторы.»</div>
+      <div class="reviews__card-author">Ирина Кира</div>
+    </div>
+
+    <div class="reviews__card">
+      <div class="reviews__card-stars">★★★★★</div>
+      <div class="reviews__card-text">«Удивительное место для улучшения здоровья! <mark>Тренера — профессионалы своего дела, доброжелательны и&nbsp;внимательны</mark> к&nbsp;своим подопечным.»</div>
+      <div class="reviews__card-author">Татьяна Филонова</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 9. КОМЬЮНИТИ ========== -->
+<section class="community">
+  <h2 class="community__title">Больше, чем&nbsp;студия</h2>
+  <p class="community__subtitle">Здесь знакомятся, дружат и&nbsp;поддерживают друг друга. Многие приходят на&nbsp;тренировку — а&nbsp;остаются ради людей.</p>
+
+  <div class="community__items">
+    <div class="community__item">
+      <div class="community__item-icon">👯</div>
+      <div>
+        <div class="community__item-title">Знакомства на тренировках</div>
+        <div class="community__item-desc">Маленькие группы до 8 человек — все быстро знакомятся и&nbsp;становятся «своими»</div>
+      </div>
+    </div>
+
+    <div class="community__item">
+      <div class="community__item-icon">💬</div>
+      <div>
+        <div class="community__item-title">Общий чат и мероприятия</div>
+        <div class="community__item-desc">Девочки общаются вне&nbsp;зала, ходят вместе на&nbsp;ивенты и&nbsp;поддерживают друг друга</div>
+      </div>
+    </div>
+
+    <div class="community__item">
+      <div class="community__item-icon">🤍</div>
+      <div>
+        <div class="community__item-title">Мотивация от окружения</div>
+        <div class="community__item-desc">Когда рядом девочки с&nbsp;такими же целями — пропускать не&nbsp;хочется</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="community__quote">
+    Пришла на пробную одна и&nbsp;боялась, что буду белой вороной. А&nbsp;через неделю уже списывалась с&nbsp;девочками, когда идём вместе.
+    <div class="community__quote-author">— из отзыва на Яндекс Картах</div>
+  </div>
+</section>
+
+<!-- ========== 10. ВИДЕО #2 ========== -->
+<section class="video-section" onclick="var v=this.querySelector('video'),o=this.querySelector('.video-section__overlay');if(v.paused){v.play();v.muted=false;o.classList.add('hidden')}else{v.pause();o.classList.remove('hidden')}">
+  <video src="img/video2-compressed.mp4" loop muted playsinline preload="metadata" poster="img/video2-poster.jpg" style="width: 100%; display: block;"></video>
+  <div class="video-section__overlay">
+    <div class="video-section__play"></div>
+  </div>
+</section>
+
+<!-- ========== 10. ЦЕНЫ ========== -->
+<section class="pricing">
+  <h2 class="pricing__title">А если решу остаться?</h2>
+  <p class="pricing__subtitle">Берёшь абонемент по&nbsp;количеству занятий — <mark>не&nbsp;на&nbsp;месяц, а&nbsp;на&nbsp;3–12&nbsp;месяцев</mark>. Ходи в&nbsp;своём темпе, без&nbsp;гонки и&nbsp;сгорающих дней</p>
+
+  <div class="pricing__highlight">
+    <div class="pricing__from">от</div>
+    <div class="pricing__amount">430 ₽</div>
+    <div class="pricing__per">за тренировку</div>
+  </div>
+
+  <div class="pricing__tiers">
+    <div class="pricing__tier">
+      <div class="pricing__tier-left">
+        <span class="pricing__tier-count">12 занятий</span>
+        <span class="pricing__tier-duration">на 3 месяца</span>
+      </div>
+      <span class="pricing__tier-price">542 ₽/занятие</span>
+    </div>
+    <div class="pricing__tier">
+      <div class="pricing__tier-left">
+        <span class="pricing__tier-count">24 занятия</span>
+        <span class="pricing__tier-duration">на 6 месяцев</span>
+      </div>
+      <span class="pricing__tier-price">483 ₽/занятие</span>
+    </div>
+    <div class="pricing__tier">
+      <div class="pricing__tier-left">
+        <span class="pricing__tier-count">36 занятий</span>
+        <span class="pricing__tier-duration">на 6 месяцев</span>
+      </div>
+      <span class="pricing__tier-price">455 ₽/занятие</span>
+    </div>
+    <div class="pricing__tier pricing__tier--best">
+      <div class="pricing__tier-left">
+        <span class="pricing__tier-count">50 занятий</span>
+        <span class="pricing__tier-duration">на 12 месяцев</span>
+      </div>
+      <span class="pricing__tier-price">430 ₽/занятие</span>
+    </div>
+  </div>
+
+  <div class="pricing__bonus">
+    <div class="pricing__bonus-label">Бонус</div>
+    Дарим дополнительные скидки самым быстрым и&nbsp;тем, кто с&nbsp;нами нацелен на&nbsp;результат
+  </div>
+</section>
+
+<!-- ========== 11. ПРИЛОЖЕНИЕ ========== -->
+<section class="app-block">
+  <h2 class="app-block__title">У нас своё приложение</h2>
+  <p class="app-block__subtitle">Никаких звонков и&nbsp;переписок — расписание, запись и&nbsp;отмена в&nbsp;два клика прямо в&nbsp;телефоне.</p>
+
+  <div class="app-block__screenshot">
+    <img src="img/app-store.png" alt="InStretch Фитнес в App Store">
+  </div>
+
+  <div class="app-block__features">
+    <div class="app-block__feature">
+      <div class="app-block__feature-num">01</div>
+      <div>
+        <div class="app-block__feature-title">Расписание на неделю</div>
+        <div class="app-block__feature-desc">Видишь все тренировки, тренера и&nbsp;свободные места</div>
+      </div>
+    </div>
+
+    <div class="app-block__feature">
+      <div class="app-block__feature-num">02</div>
+      <div>
+        <div class="app-block__feature-title">Запись за 2 секунды</div>
+        <div class="app-block__feature-desc">Выбрала тренировку — нажала кнопку. Готово</div>
+      </div>
+    </div>
+
+    <div class="app-block__feature">
+      <div class="app-block__feature-num">03</div>
+      <div>
+        <div class="app-block__feature-title">Отмена без проблем</div>
+        <div class="app-block__feature-desc">Не получается прийти — отменяешь в&nbsp;приложении, без звонков</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 12. CTA ========== -->
+<section class="cta">
+  <h2 class="cta__title">490 ₽ — и ты всё поймёшь сама</h2>
+  <p class="cta__text">Не надо верить на слово. Приходи на&nbsp;2&nbsp;пробные тренировки, почувствуй атмосферу и&nbsp;реши — твоё или нет.</p>
+  <div class="cta__stats">
+    <div class="cta__stat">
+      <div class="cta__stat-num">5.0</div>
+      <div class="cta__stat-label">рейтинг на Я.Картах</div>
+    </div>
+    <div class="cta__stat">
+      <div class="cta__stat-num">12</div>
+      <div class="cta__stat-label">видов тренировок</div>
+    </div>
+    <div class="cta__stat">
+      <div class="cta__stat-num">2</div>
+      <div class="cta__stat-label">студии в&nbsp;Брянске</div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 12. ЛОКАЦИИ ========== -->
+<section class="locations">
+  <h3 class="locations__title">Мы рядом</h3>
+  <div class="locations__subtitle">2 студии в Брянске — выбирай ближе к дому</div>
+  <div class="locations__grid">
+    <div class="locations__card">
+      <div class="locations__name">Бежицкий район</div>
+      <div class="locations__address">ул. 3 Интернационала, 6а, 2&nbsp;этаж<br>ежедневно 09:00–21:00</div>
+      <a class="locations__phone" href="tel:+79699994120">+7 (969) 999-41-20</a>
+    </div>
+    <div class="locations__card">
+      <div class="locations__name">Советский район</div>
+      <div class="locations__address">ул. Красноармейская, 15, к3<br>ежедневно 09:30–21:00</div>
+      <a class="locations__phone" href="tel:+79699995702">+7 (969) 999-57-02</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== ФИНАЛ ========== -->
+<section class="final-cta">
+  <div class="final-cta__logo">
+    <img src="logo-white.png" alt="inStretch">
+  </div>
+  <h2 class="final-cta__title">Ждём тебя на&nbsp;тренировке</h2>
+  <p class="final-cta__text">Оставляй заявку по&nbsp;кнопке ниже — пришлём расписание и&nbsp;поможем записаться</p>
+  <div class="final-cta__arrow">↓</div>
+</section>
+
+</body>
+</html>
